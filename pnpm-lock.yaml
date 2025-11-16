@@ -21,7 +21,33 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  packages/theme:
+    dependencies:
+      '@clearline7/set-definitions':
+        specifier: workspace:*
+        version: link:../set-definitions
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.5
+        version: 19.2.5
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
 packages:
+
+  '@types/react@19.2.5':
+    resolution: {integrity: sha512-keKxkZMqnDicuvFoJbzrhbtdLSPhj/rZThDlKWCDbgXmUg0rEUFtRssDXKYmtXluZlIqiC5VqkCgRwzuyLHKHw==}
+
+  csstype@3.2.2:
+    resolution: {integrity: sha512-D80T+tiqkd/8B0xNlbstWDG4x6aqVfO52+OlSUNIdkTvmNw0uQpJLeos2J/2XvpyidAFuTPmpad+tUxLndwj6g==}
+
+  react@19.2.0:
+    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+    engines: {node: '>=0.10.0'}
 
   turbo-darwin-64@2.6.1:
     resolution: {integrity: sha512-Dm0HwhyZF4J0uLqkhUyCVJvKM9Rw7M03v3J9A7drHDQW0qAbIGBrUijQ8g4Q9Cciw/BXRRd8Uzkc3oue+qn+ZQ==}
@@ -63,6 +89,14 @@ packages:
     hasBin: true
 
 snapshots:
+
+  '@types/react@19.2.5':
+    dependencies:
+      csstype: 3.2.2
+
+  csstype@3.2.2: {}
+
+  react@19.2.0: {}
 
   turbo-darwin-64@2.6.1:
     optional: true
