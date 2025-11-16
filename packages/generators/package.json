@@ -1,0 +1,24 @@
+{
+  "name": "@clearline7/generators",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "generate:word": "node dist/scripts/generateWord.js",
+    "generate:gdocs": "node dist/scripts/generateGDocs.js"
+  },
+  "dependencies": {
+    "@clearline7/set-definitions": "workspace:*",
+    "docx": "^9.5.1",
+    "googleapis": "^166.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}
