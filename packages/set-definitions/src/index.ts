@@ -1,11 +1,11 @@
-import SetDefinition from "./SetDefinition";
-import BlogPosts from "./BlogPosts";
-import Clearline7 from "./Clearline7";
-import ClericalOfficePro from "./ClericalOfficePro";
-import ClerkRoomStandard from "./ClerkRoomStandard";
-import FederalFlow from "./FederalFlow";
-import TechDocs from "./TechDocs";
-import WikiGuidelines from "./WikiGuidelines";
+import SetDefinition from "./SetDefinition.js";
+import BlogPosts from "./BlogPosts.js";
+import Clearline7 from "./Clearline7.js";
+import ClericalOfficePro from "./ClericalOfficePro.js";
+import ClerkRoomStandard from "./ClerkRoomStandard.js";
+import FederalFlow from "./FederalFlow.js";
+import TechDocs from "./TechDocs.js";
+import WikiGuidelines from "./WikiGuidelines.js";
 
 export {
     SetDefinition, 
@@ -16,4 +16,4 @@ export {
     FederalFlow, 
     TechDocs, 
     WikiGuidelines
-}; 
+};

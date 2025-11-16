@@ -1,4 +1,4 @@
-import SetDefinition from "./SetDefinition";
+import SetDefinition from "./SetDefinition.js";
 
 const ClericalOfficePro = new SetDefinition(
   {
