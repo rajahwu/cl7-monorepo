@@ -15,6 +15,22 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  packages/components:
+    dependencies:
+      '@clearline7/theme':
+        specifier: workspace:*
+        version: link:../theme
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.5
+        version: 19.2.5
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   packages/set-definitions:
     devDependencies:
       typescript:
