@@ -6,7 +6,11 @@
   "scripts": {
     "build": "tsc",
     "generate:word": "node dist/scripts/generateWord.js",
-    "generate:gdocs": "node dist/scripts/generateGDocs.js"
+    "generate:gdocs": "node dist/scripts/generateGDocs.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@clearline7/set-definitions": "workspace:*",
