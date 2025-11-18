@@ -1,2 +1,6 @@
 export { Heading, H1, H2, H3 } from './Heading'
 export { Paragraph } from './Paragraph'
+export { List, ListItem } from './List'
+export { Blockquote } from './Blockquote'
+export { Code } from './Code'
+export { Card } from './Card'
