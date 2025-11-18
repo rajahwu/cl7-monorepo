@@ -12,7 +12,7 @@ export function Card({ children, style }: CardProps) {
   const baseStyle: CSSProperties = {
     backgroundColor: theme.colors.card,
     borderRadius: theme.radius.card,
-    padding: theme.spacing.scale?.['6'] || '24px',
+    padding: theme.spacing.scale!['6'],
     marginBottom: theme.spacing.paragraphAfter,
     boxShadow: theme.shadows.medium,
     border: `1px solid ${theme.colors.border}`,
