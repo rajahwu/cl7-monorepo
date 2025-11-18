@@ -8,14 +8,24 @@
     "build": "turbo run build",
     "dev:landing": "pnpm --filter @clearline7/landing dev",
     "dev:guide": "pnpm --filter @clearline7/style-guide dev",
-    "dev:all": "turbo run dev --parallel"
+    "dev:all": "turbo run dev --parallel",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "test:coverage": "turbo run test:coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.22.0",
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitest/coverage-v8": "^4.0.10",
+    "@vitest/ui": "^4.0.10",
+    "happy-dom": "^20.0.10",
     "turbo": "^2.6.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.10"
   }
 }

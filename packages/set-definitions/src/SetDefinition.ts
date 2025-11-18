@@ -95,23 +95,27 @@ class SetDefinition {
     };
 
     // --- Default Spacing ---
+    const defaultScale = {
+      '0': '0px',
+      '1': '4px',
+      '2': '8px',
+      '3': '12px',
+      '4': '16px',
+      '6': '24px',
+      '8': '32px',
+      '12': '48px',
+      '16': '64px',
+    };
+
     this.spacing = {
       bulletIndent: "0.25in",
       paragraphBefore: "6pt",
       paragraphAfter: "6pt",
+      ...spacing,
       scale: {
-        '0': '0px',
-        '1': '4px',
-        '2': '8px',
-        '3': '12px',
-        '4': '16px',
-        '6': '24px',
-        '8': '32px',
-        '12': '48px',
-        '16': '64px',
+        ...defaultScale,
         ...spacing.scale,
       },
-      ...spacing,
     };
 
     // --- Default Radius ---
