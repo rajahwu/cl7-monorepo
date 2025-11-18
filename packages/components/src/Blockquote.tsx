@@ -15,7 +15,7 @@ export function Blockquote({ children, style }: BlockquoteProps) {
     lineHeight: theme.typography.lineHeightNormal,
     color: theme.colors.muted,
     borderLeft: `4px solid ${theme.colors.accent}`,
-    paddingLeft: theme.spacing.scale?.['4'] || '16px',
+    paddingLeft: theme.spacing.scale!['4'],
     marginLeft: '0',
     marginBottom: theme.spacing.paragraphAfter,
     fontStyle: 'italic',
