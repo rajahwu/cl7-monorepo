@@ -1,29 +1,35 @@
 import { createContext, useContext, ReactNode } from 'react'
 import { SetDefinition } from '@clearline7/set-definitions'
 
-interface ThemeContextType {
+interface SetDefinitionContextType {
   setDefinition: SetDefinition
 }
 
-const ThemeContext = createContext<ThemeContextType | null>(null)
+const SetDefinitionContext = createContext<SetDefinitionContextType | null>(null)
 
-export function useTheme() {
-  const context = useContext(ThemeContext)
+export function useSetDefinition() {
+  const context = useContext(SetDefinitionContext)
   if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider')
+    throw new Error('useSetDefinition must be used within SetDefinitionProvider')
   }
   return context.setDefinition
 }
 
-interface ThemeProviderProps {
+// Keep useTheme as alias for backward compatibility
+export const useTheme = useSetDefinition
+
+interface SetDefinitionProviderProps {
   setDefinition: SetDefinition
   children: ReactNode
 }
 
-export function ThemeProvider({ setDefinition, children }: ThemeProviderProps) {
+export function SetDefinitionProvider({ setDefinition, children }: SetDefinitionProviderProps) {
   return (
-    <ThemeContext.Provider value={{ setDefinition }}>
+    <SetDefinitionContext.Provider value={{ setDefinition }}>
       {children}
-    </ThemeContext.Provider>
+    </SetDefinitionContext.Provider>
   )
 }
+
+// Keep ThemeProvider as alias for backward compatibility
+export const ThemeProvider = SetDefinitionProvider

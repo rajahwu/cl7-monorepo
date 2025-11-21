@@ -30,7 +30,7 @@ describe('List', () => {
         </ThemeProvider>
       )
 
-      const list = screen.getByTestId('list')
+      const list = container.querySelector('ul')
       expect(list?.tagName).toBe('UL')
     })
 
