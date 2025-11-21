@@ -19,7 +19,7 @@ export function Navigation({ children, orientation = 'horizontal', style }: Navi
   const baseStyle: CSSProperties = {
     display: 'flex',
     flexDirection: orientation === 'horizontal' ? 'row' : 'column',
-    gap: theme.spacing.scale['4'],
+    gap: theme.spacing.scale!['4'],
     listStyle: 'none',
     margin: 0,
     padding: 0,

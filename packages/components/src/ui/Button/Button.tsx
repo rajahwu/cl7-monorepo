@@ -17,20 +17,20 @@ export function Button({
   const theme = useTheme()
 
   const sizeStyles = {
-    sm: { padding: `${theme.spacing.scale['1']} ${theme.spacing.scale['2']}`, fontSize: '14px' },
-    md: { padding: `${theme.spacing.scale['2']} ${theme.spacing.scale['4']}`, fontSize: '16px' },
-    lg: { padding: `${theme.spacing.scale['3']} ${theme.spacing.scale['6']}`, fontSize: '18px' },
+    sm: { padding: `${theme.spacing.scale!['1']} ${theme.spacing.scale!['2']}`, fontSize: '14px' },
+    md: { padding: `${theme.spacing.scale!['2']} ${theme.spacing.scale!['4']}`, fontSize: '16px' },
+    lg: { padding: `${theme.spacing.scale!['3']} ${theme.spacing.scale!['6']}`, fontSize: '18px' },
   }
 
   const variantStyles = {
     primary: {
       backgroundColor: theme.colors.primary,
-      color: theme.colors.background,
+      color: theme.colors.bg,
       border: 'none',
     },
     secondary: {
       backgroundColor: theme.colors.secondary,
-      color: theme.colors.background,
+      color: theme.colors.bg,
       border: 'none',
     },
     outline: {
