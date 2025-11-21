@@ -1,0 +1,230 @@
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { editions } from './editions';
+import { EditionHero } from './EditionHero';
+import { EditionFeatures } from './EditionFeatures';
+
+export function EditionPage() {
+  const { editionSlug } = useParams<{ editionSlug: string }>();
+  const edition = Object.values(editions).find(e => e.slug === editionSlug);
+
+  const [formData, setFormData] = useState({ name: '', email: '', role: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+    setFormData({ name: '', email: '', role: '' });
+  };
+
+  if (!edition) {
+    return (
+      <div style={{ padding: '40px', textAlign: 'center' }}>
+        <h1>Edition not found</h1>
+        <p>The edition you are looking for does not exist.</p>
+        <Link to="/">Go back to all editions</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ background: edition.palette.bg, color: edition.palette.text, minHeight: '100vh' }}>
+      {/* Header */}
+      <header style={{ borderBottom: `1px solid ${edition.palette.border}`, background: edition.palette.bg, position: 'sticky', top: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: edition.palette.text, fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', textDecoration: 'none' }}>
+            <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: edition.palette.primary }} />
+            Clearline 7
+          </Link>
+          <nav style={{ display: 'flex', gap: '24px' }}>
+            <a href="#features" style={{ color: edition.palette.muted, textDecoration: 'none', fontSize: '14px' }}>Features</a>
+            <a href="#pricing" style={{ color: edition.palette.muted, textDecoration: 'none', fontSize: '14px' }}>Pricing</a>
+            <Link to="/" style={{ color: edition.palette.muted, background: 'none', border: 'none', fontSize: '14px', cursor: 'pointer', textDecoration: 'none' }}>All Editions</Link>
+          </nav>
+        </div>
+      </header>
+
+      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
+        <EditionHero edition={edition} />
+        <EditionFeatures edition={edition} />
+
+        {/* Pricing */}
+        <section id="pricing" style={{ padding: '50px 0' }}>
+          <h2 style={{ fontSize: '32px', marginBottom: '24px', color: edition.palette.primary }}>
+            Simple Pricing
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+            <div style={{
+              background: edition.palette.card,
+              border: `1px solid ${edition.palette.border}`,
+              borderRadius: '12px',
+              padding: '24px',
+            }}>
+              <h3 style={{ color: edition.palette.primary }}>Starter</h3>
+              <div style={{ fontSize: '36px', fontWeight: 700, color: edition.palette.primary, margin: '12px 0' }}>
+                $39
+              </div>
+              <p style={{ color: edition.palette.muted, marginBottom: '18px' }}>
+                {edition.name} Quick Style Set
+              </p>
+              <button style={{
+                width: '100%',
+                padding: '12px',
+                borderRadius: '10px',
+                border: `1px solid ${edition.palette.primary}`,
+                background: edition.palette.primary,
+                color: '#fff',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}>
+                Get Started
+              </button>
+            </div>
+            <div style={{
+              background: edition.palette.card,
+              border: `2px solid ${edition.palette.primary}`,
+              borderRadius: '12px',
+              padding: '24px',
+            }}>
+              <h3 style={{ color: edition.palette.primary }}>Pro Bundle</h3>
+              <div style={{ fontSize: '36px', fontWeight: 700, color: edition.palette.primary, margin: '12px 0' }}>
+                $149
+              </div>
+              <p style={{ color: edition.palette.muted, marginBottom: '18px' }}>
+                All 4 editions + Notion library
+              </p>
+              <button style={{
+                width: '100%',
+                padding: '12px',
+                borderRadius: '10px',
+                border: 'none',
+                background: edition.palette.primary,
+                color: '#fff',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}>
+                Get Pro Bundle
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Form */}
+        <section id="form" style={{ padding: '50px 0' }}>
+          <h2 style={{ fontSize: '32px', marginBottom: '24px', color: edition.palette.primary }}>
+            Try {edition.name}
+          </h2>
+          <div style={{
+            maxWidth: '500px',
+            background: edition.palette.card,
+            border: `1px solid ${edition.palette.border}`,
+            borderRadius: '12px',
+            padding: '24px',
+          }}>
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '6px', color: edition.palette.text }}>
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    border: `1px solid ${edition.palette.border}`,
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '6px', color: edition.palette.text }}>
+                  Work Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    border: `1px solid ${edition.palette.border}`,
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '6px', color: edition.palette.text }}>
+                  Role
+                </label>
+                <select
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    border: `1px solid ${edition.palette.border}`,
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <option value="">Select your role</option>
+                  <option>Admin / Ops</option>
+                  <option>Paralegal / Clerk</option>
+                  <option>Technical Writer</option>
+                  <option>Engineer / Dev</option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  background: edition.palette.primary,
+                  color: '#fff',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                }}
+              >
+                Send me the template
+              </button>
+              {submitted && (
+                <p style={{ marginTop: '12px', color: edition.palette.success, fontWeight: 600 }}>
+                  ✓ Check your email for the download link!
+                </p>
+              )}
+            </form>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer style={{ borderTop: `1px solid ${edition.palette.border}`, padding: '30px 0', marginTop: '40px' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px', textAlign: 'center', color: edition.palette.muted }}>
+          <p>© 2025 Clearline 7. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
