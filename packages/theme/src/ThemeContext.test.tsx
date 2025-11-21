@@ -116,7 +116,7 @@ describe('ThemeContext', () => {
 
       expect(() => {
         render(<TestComponent />)
-      }).toThrow('useTheme must be used within ThemeProvider')
+      }).toThrow('useSetDefinition must be used within SetDefinitionProvider')
 
       console.error = consoleError
     })

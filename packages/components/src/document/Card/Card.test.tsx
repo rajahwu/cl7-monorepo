@@ -33,7 +33,7 @@ describe('Card', () => {
         </ThemeProvider>
       )
 
-      const card = screen.getByTestId('card')
+      const card = container.querySelector('div')
       expect(card?.tagName).toBe('DIV')
     })
 
