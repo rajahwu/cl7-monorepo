@@ -82,6 +82,40 @@ importers:
         specifier: ^7.2.2
         version: 7.2.2(@types/node@24.10.1)
 
+  apps/preview:
+    dependencies:
+      '@clearline7/components':
+        specifier: workspace:*
+        version: link:../../packages/components
+      '@clearline7/set-definitions':
+        specifier: workspace:*
+        version: link:../../packages/set-definitions
+      '@clearline7/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.2
+        version: 19.2.5
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.3(@types/react@19.2.5)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.0
+        version: 5.1.1(vite@7.2.2(@types/node@24.10.1))
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.2.2
+        version: 7.2.2(@types/node@24.10.1)
+
   apps/style-guide:
     dependencies:
       '@clearline7/components':
