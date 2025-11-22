@@ -6,7 +6,13 @@ This TODO list focuses on the remaining cleanup, verification, documentation, an
 
 ---
 
-## P1: Finalize Refactoring & Cleanup
+## P1: Git Hygiene
+
+- [ ] **Delete Stale Branches:** The branches `claude/testing-mi4bqswyvrlbvwxc-012Rff86xT66mT93g1qq5QLw` and `vincent/coverage-landing-sync` are outdated and contain reversed changes. They should be deleted to avoid accidental merges.
+
+---
+
+## P2: Finalize Refactoring & Cleanup
 
 These tasks address items left over from the initial refactor.
 
@@ -16,7 +22,7 @@ These tasks address items left over from the initial refactor.
 
 ---
 
-## P2: Verification & Testing
+## P3: Verification & Testing
 
 This project has a comprehensive test suite. The next step is to run a full verification to ensure the recent, large-scale changes haven't introduced regressions.
 
@@ -30,7 +36,7 @@ This project has a comprehensive test suite. The next step is to run a full veri
 
 ---
 
-## P3: Documentation
+## P4: Documentation
 
 The project's documentation needs to be updated to reflect the new architecture.
 
@@ -46,7 +52,7 @@ The project's documentation needs to be updated to reflect the new architecture.
 
 ---
 
-## P4: Future Enhancements
+## P5: Future Enhancements
 
 These are new features to build on the new, stable foundation.
 
