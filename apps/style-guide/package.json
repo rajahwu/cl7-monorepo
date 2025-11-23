@@ -15,7 +15,8 @@
     "@mdx-js/rollup": "^3.1.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router": "^7.9.6"
+    "react-router-dom": "^6.26.1",
+    "lucide-react": "^0.438.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

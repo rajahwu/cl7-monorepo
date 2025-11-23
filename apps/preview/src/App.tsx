@@ -13,9 +13,9 @@ import {
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import './style.css'
-import HtmlToDocx from '@turbodocx/html-to-docx'
-import { saveAs } from 'file-saver'
-import html2pdf from 'html2pdf.js'
+// import HtmlToDocx from '@turbodocx/html-to-docx'
+// import { saveAs } from 'file-saver'
+// import html2pdf from 'html2pdf.js'
 
 const STYLE_SETS: Record<string, SetDefinition> = {
   'Clearline 7': Clearline7,
@@ -48,20 +48,20 @@ const App = () => {
   })
   const contentRef = useRef<HTMLDivElement>(null)
 
-  const exportToWord = async () => {
-    if (editor) {
-      const html = editor.getHTML()
-      const docx = await HtmlToDocx(html)
-      saveAs(docx, 'document.docx')
-    }
-  }
+  // const exportToWord = async () => {
+  //   if (editor) {
+  //     const html = editor.getHTML()
+  //     const docx = await HtmlToDocx(html)
+  //     saveAs(docx, 'document.docx')
+  //   }
+  // }
 
-  const exportToPdf = () => {
-    if (contentRef.current) {
-      const element = contentRef.current
-      html2pdf().from(element).save('document.pdf')
-    }
-  }
+  // const exportToPdf = () => {
+  //   if (contentRef.current) {
+  //     const element = contentRef.current
+  //     html2pdf().from(element).save('document.pdf')
+  //   }
+  // }
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -93,7 +93,7 @@ const App = () => {
           </select>
         </div>
 
-        <button
+        {/* <button
           onClick={exportToWord}
           style={{
             width: '100%',
@@ -107,9 +107,9 @@ const App = () => {
           }}
         >
           Export to Word
-        </button>
+        </button> */}
 
-        <button
+        {/* <button
           onClick={exportToPdf}
           style={{
             width: '100%',
@@ -122,7 +122,7 @@ const App = () => {
           }}
         >
           Export to PDF
-        </button>
+        </button> */}
 
         <div style={{ fontSize: '14px', color: '#666', marginTop: '20px' }}>
           <p>Select a style set to preview how your document will look with different styling.</p>

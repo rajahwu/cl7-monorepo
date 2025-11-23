@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@clearline7/theme'
 import { Clearline7 } from '@clearline7/set-definitions'
 import { Navigation } from './components/Navigation'
