@@ -1,6 +1,11 @@
-import { NavLink } from 'react-router'
+import { NavLink } from 'react-router-dom';
 
-export function Navigation() {
+interface NavigationProps {
+  isOpen: boolean;
+  toggle: () => void;
+}
+
+export function Navigation({ isOpen, toggle }: NavigationProps) {
   const linkStyle = ({ isActive }: { isActive: boolean }) => ({
     display: 'block',
     padding: '8px 16px',
@@ -8,7 +13,7 @@ export function Navigation() {
     fontWeight: isActive ? 'bold' : 'normal',
     textDecoration: 'none',
     borderLeft: isActive ? '3px solid #0066cc' : '3px solid transparent',
-  })
+  });
 
   return (
     <nav style={{
@@ -18,10 +23,26 @@ export function Navigation() {
       height: '100vh',
       overflowY: 'auto',
       position: 'fixed',
-      left: 0,
+      left: isOpen ? 0 : '-250px',
       top: 0,
+      transition: 'left 0.3s',
+      zIndex: 999,
     }}>
-      <h2 style={{ margin: '0 0 20px 0', fontSize: '18px' }}>Style Guide</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h2 style={{ margin: '0 0 20px 0', fontSize: '18px' }}>Style Guide</h2>
+        <button
+          onClick={toggle}
+          style={{
+            display: 'block',
+            padding: '10px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          X
+        </button>
+      </div>
 
       <div style={{ marginBottom: '20px' }}>
         <h3 style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>Overview</h3>
@@ -58,5 +79,5 @@ export function Navigation() {
         <NavLink to="/sets/wiki" style={linkStyle}>Wiki Guidelines</NavLink>
       </div>
     </nav>
-  )
+  );
 }

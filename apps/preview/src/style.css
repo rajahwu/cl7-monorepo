@@ -1,0 +1,11 @@
+.ProseMirror {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 400px;
+}
+
+.ProseMirror:focus {
+  outline: none;
+  border-color: #007bff;
+}

@@ -1,5 +1,65 @@
 
 export const editions = {
+  clearline7: {
+    name: 'Clearline 7 (Default)',
+    slug: 'clearline7',
+    tagline: 'The foundational Clearline 7 experience, balanced and versatile.',
+    palette: {
+      primary: '#2F5597', // Example: using Clerical Pro primary for now
+      secondary: '#385D8A',
+      accent: '#64748B',
+      success: '#16A34A',
+      bg: '#FFFFFF',
+      card: '#F8FAFC',
+      text: '#0F172A',
+      muted: '#64748B',
+      border: '#E2E8F0',
+    },
+    hero: 'Default Clearline 7 Experience',
+    description: 'A versatile and balanced style for general use.',
+    features: ['Clean typography', 'Neutral color palette', 'Standard document layouts'],
+    icon: '✨',
+  },
+  blogPosts: {
+    name: 'Blog Posts',
+    slug: 'blog-posts',
+    tagline: 'Engaging layouts for online content, optimized for readability.',
+    palette: {
+      primary: '#D97706', // Example: warm tones for blog
+      secondary: '#F59E0B',
+      accent: '#FCD34D',
+      success: '#10B981',
+      bg: '#FFFFFF',
+      card: '#FFFBEB',
+      text: '#451A03',
+      muted: '#B45309',
+      border: '#FDE68A',
+    },
+    hero: 'Dynamic Blog Content',
+    description: 'Craft compelling blog posts with ease.',
+    features: ['Optimized for web readability', 'Rich media support', 'Engaging typography'],
+    icon: '✍️',
+  },
+  clerkRoomStandard: {
+    name: 'ClerkRoom Standard',
+    slug: 'clerkroom-standard',
+    tagline: 'Efficient and no-nonsense, designed for rapid data entry and forms.',
+    palette: {
+      primary: '#4B5563', // Example: muted, functional tones
+      secondary: '#6B7280',
+      accent: '#9CA3AF',
+      success: '#22C55E',
+      bg: '#FFFFFF',
+      card: '#F9FAFB',
+      text: '#1F2937',
+      muted: '#4B5563',
+      border: '#D1D5DB',
+    },
+    hero: 'Streamlined Data Entry',
+    description: 'Perfect for forms, reports, and administrative tasks.',
+    features: ['Compact layouts', 'Clear form elements', 'High information density'],
+    icon: '📊',
+  },
   federal: {
     name: 'Federal Flow Clerk Basic',
     slug: 'federal-flow',

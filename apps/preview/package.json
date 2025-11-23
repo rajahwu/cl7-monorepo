@@ -13,13 +13,19 @@
     "@clearline7/set-definitions": "workspace:*",
     "@clearline7/theme": "workspace:*",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "@tiptap/react": "^2.5.5",
+    "@tiptap/starter-kit": "^2.5.5",
+    "@turbodocx/html-to-docx": "^1.0.1",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.10.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "typescript": "~5.9.3",
-    "vite": "^7.2.2"
+    "vite": "^7.2.2",
+    "@types/file-saver": "^2.0.7"
   }
 }
