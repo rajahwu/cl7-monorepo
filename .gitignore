@@ -3,3 +3,9 @@ dist/
 .turbo/
 .env
 *.log
+
+# Ignore temporary and archive files
+apps/landing/UndateLandingPageCode.md
+archive/
+brand/
+

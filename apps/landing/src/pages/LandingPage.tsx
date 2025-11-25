@@ -1,74 +1,156 @@
+// apps/landing/src/pages/LandingPage.tsx
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { editions } from '../editions/editions';
-import { EditionCard } from '../editions/EditionCard';
 
-export function LandingPage() {
+const ClearlineLandingPage = () => {
+  const brand = {
+    blue: '#1E3A8A',
+    gray: '#6B7280',
+    teal: '#14B8A6',
+    white: '#FFFFFF',
+    offWhite: '#F9FAFB',
+    darkGray: '#1F2937'
+  };
+
+  const styleSets = [
+    { id: 'federal', name: 'Federal Flow', desc: 'Strict compliance standards.' },
+    { id: 'tech', name: 'Tech Docs', desc: 'API & architectural clarity.' },
+    { id: 'clerk', name: 'Clerk Room', desc: 'Standard administrative logging.' },
+    { id: 'wiki', name: 'Wiki Guidelines', desc: 'Collaborative knowledge base.' },
+    { id: 'blog', name: 'Blog Posts', desc: 'External comms & announcements.' },
+    { id: 'pro', name: 'Clerical Pro', desc: 'Executive summaries & briefs.' },
+    { id: 'base', name: 'Clearline Base', desc: 'The universal foundation.' }
+  ];
+
   return (
-    <div style={{ background: '#FFFFFF', color: '#0a0a0a', minHeight: '100vh', width: '100%' }}>
-      {/* Header */}
-      <header style={{ borderBottom: '1px solid #e5e7eb', background: '#fff', position: 'sticky', top: 0, zIndex: 10 }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 700, fontSize: '18px' }}>
-            <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: '#2F5597' }} />
-            Clearline 7
+    <div style={{ fontFamily: 'Inter, system-ui, sans-serif', color: brand.darkGray, background: brand.white }}>
+      {/* HERO SECTION */}
+      <header style={{ backgroundColor: brand.blue, color: brand.white, padding: '4rem 2rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ 
+            display: 'inline-block', 
+            border: `2px solid ${brand.teal}`, 
+            padding: '10px', 
+            marginBottom: '2rem',
+            transform: 'rotate(-2deg)'
+          }}>
+             <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, letterSpacing: '2px' }}>CLEARLINE7</h3>
           </div>
-          <nav style={{ display: 'flex', gap: '24px' }}>
-            <a href="#editions" style={{ color: '#555', textDecoration: 'none', fontSize: '14px' }}>Editions</a>
-            <a href="#features" style={{ color: '#555', textDecoration: 'none', fontSize: '14px' }}>Features</a>
-          </nav>
+          
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, lineHeight: 1.1, marginBottom: '1.5rem' }}>
+            One clear way to write.<br />
+            <span style={{ color: brand.teal }}>Seven proven styles.</span><br />
+            Zero confusion.
+          </h1>
+          
+          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '600px', margin: '0 auto 3rem auto' }}>
+            The governance standard for teams who need their documentation to look like it came from one competent mind.
+          </p>
+
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <button style={{ 
+              backgroundColor: brand.teal, 
+              color: brand.blue, 
+              padding: '1rem 2rem', 
+              border: 'none', 
+              borderRadius: '4px',
+              fontWeight: 700, 
+              fontSize: '1rem',
+              cursor: 'pointer'
+            }}>
+              Get the Standard
+            </button>
+            <button style={{ 
+              backgroundColor: 'transparent', 
+              color: brand.white, 
+              border: `1px solid ${brand.white}`, 
+              padding: '1rem 2rem', 
+              borderRadius: '4px',
+              fontWeight: 600,
+              fontSize: '1rem',
+              cursor: 'pointer'
+            }}>
+              View Documentation
+            </button>
+          </div>
         </div>
       </header>
 
-      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
-        {/* Hero */}
-        <section style={{ padding: '64px 0 40px', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '48px', lineHeight: 1.1, margin: '0 0 14px', color: '#0a0a0a' }}>
-            One System. Four Distinct Editions.
-          </h1>
-          <p style={{ color: '#555', fontSize: '18px', maxWidth: '600px', margin: '0 auto 32px' }}>
-            Unified style framework with tailored palettes and typography for government, corporate, technical, and collaborative teams.
-          </p>
-        </section>
+      {/* THE PROBLEM / SOLUTION */}
+      <section style={{ padding: '4rem 2rem', backgroundColor: brand.offWhite }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ color: brand.blue, fontSize: '2rem', marginBottom: '1rem' }}>The Problem: Entropy</h2>
+            <p style={{ lineHeight: 1.6, fontSize: '1.1rem', color: brand.gray }}>
+              Without a system, every document drifts. Fonts change. Headings inconsistent. Tone wobbles between "buddy" and "bureaucrat."
+            </p>
+            <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#fff', borderLeft: '4px solid #EF4444', color: '#EF4444', fontStyle: 'italic' }}>
+              "We kind of prefer if you would maybe format it like this..."
+            </div>
+          </div>
+          <div>
+            <h2 style={{ color: brand.blue, fontSize: '2rem', marginBottom: '1rem' }}>The Solution: Governance</h2>
+            <p style={{ lineHeight: 1.6, fontSize: '1.1rem', color: brand.gray }}>
+              Clearline7 enforces structure. It is not a suggestion. It is a programmatic standard for professional communication.
+            </p>
+            <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#fff', borderLeft: `4px solid ${brand.teal}`, color: brand.blue, fontWeight: 600 }}>
+              "Use this format to ensure every memo is easy to review."
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Editions Grid */}
-        <section id="editions" style={{ padding: '50px 0' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-            {Object.values(editions).map((ed) => (
-              <Link to={`/${ed.slug}`} key={ed.slug} style={{ textDecoration: 'none' }}>
-                <EditionCard edition={ed} onClick={() => {}} />
+      {/* THE 7 SETS */}
+      <section style={{ padding: '5rem 2rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ color: brand.blue, fontSize: '2.5rem', marginBottom: '1rem' }}>The Seven Sets</h2>
+            <p style={{ color: brand.gray }}>Select a calibrated edition based on your audience.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            {styleSets.map((set) => (
+              <Link 
+                key={set.id} 
+                to={`/editions/${set.id}`}
+                style={{ 
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  border: '1px solid #E5E7EB', 
+                  borderRadius: '8px', 
+                  padding: '2rem',
+                  transition: 'transform 0.2s',
+                  display: 'block'
+                }}
+              >
+                <div style={{ 
+                  width: '40px', 
+                  height: '4px', 
+                  backgroundColor: brand.teal, 
+                  marginBottom: '1.5rem' 
+                }} />
+                <h3 style={{ fontSize: '1.5rem', color: brand.blue, marginBottom: '0.5rem' }}>{set.name}</h3>
+                <p style={{ color: brand.gray, lineHeight: 1.5 }}>{set.desc}</p>
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Unified features */}
-        <section id="features" style={{ padding: '50px 0' }}>
-          <h2 style={{ fontSize: '32px', marginBottom: '32px', textAlign: 'center', color: '#0a0a0a' }}>
-            Unified, Yet Distinct
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', color: '#0a0a0a' }}>Shared Architecture</h3>
-              <p style={{ color: '#555', margin: 0 }}>All editions use the same style system and template structure for consistency across your org.</p>
-            </div>
-            <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', color: '#0a0a0a' }}>Tailored Palettes</h3>
-              <p style={{ color: '#555', margin: 0 }}>Each edition features a distinct color palette and typography designed for its audience.</p>
-            </div>
-            <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', color: '#0a0a0a' }}>One-Click Switching</h3>
-              <p style={{ color: '#555', margin: 0 }}>Quick Style Sets let teams adopt the right edition for their workflow instantly.</p>
-            </div>
+      {/* FOOTER */}
+      <footer style={{ backgroundColor: '#111827', color: brand.gray, padding: '4rem 2rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <h4 style={{ color: brand.white, letterSpacing: '1px', marginBottom: '1rem' }}>CLEARLINE7</h4>
+          <p style={{ fontSize: '0.9rem', marginBottom: '2rem' }}>
+            Built on 30 years of systems thinking. Encoding expertise into programmatic standards.
+          </p>
+          <div style={{ fontSize: '0.8rem', opacity: 0.5 }}>
+            © 2025 Clearline7 Systems. All rights reserved.
           </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid #e5e7eb', padding: '30px 0', marginTop: '60px', background: '#f9fafb' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px', textAlign: 'center', color: '#555' }}>
-          <p>© 2025 Clearline 7. All rights reserved.</p>
         </div>
       </footer>
     </div>
   );
-}
+};
+
+export default ClearlineLandingPage;
