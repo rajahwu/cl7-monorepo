@@ -1,3 +1,4 @@
+// apps/landing/src/editions/EditionPage.tsx
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { editions } from './editions';
@@ -6,6 +7,8 @@ import { EditionFeatures } from './EditionFeatures';
 
 export function EditionPage() {
   const { editionSlug } = useParams<{ editionSlug: string }>();
+  
+  // Find the edition that matches the slug
   const edition = Object.values(editions).find(e => e.slug === editionSlug);
 
   const [formData, setFormData] = useState({ name: '', email: '', role: '' });
@@ -25,21 +28,33 @@ export function EditionPage() {
 
   if (!edition) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center' }}>
-        <h1>Edition not found</h1>
-        <p>The edition you are looking for does not exist.</p>
-        <Link to="/">Go back to all editions</Link>
+      <div style={{ padding: '80px 20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
+        <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Edition not found</h1>
+        <p style={{ color: '#666', marginBottom: '2rem' }}>The edition "{editionSlug}" does not exist.</p>
+        <Link 
+          to="/" 
+          style={{ 
+            padding: '10px 20px', 
+            background: '#1E3A8A', 
+            color: 'white', 
+            textDecoration: 'none', 
+            borderRadius: '6px',
+            fontWeight: 600 
+          }}
+        >
+          Return Home
+        </Link>
       </div>
     );
   }
 
   return (
-    <div style={{ background: edition.palette.bg, color: edition.palette.text, minHeight: '100vh' }}>
+    <div style={{ background: edition.palette.bg, color: edition.palette.text, minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
       <header style={{ borderBottom: `1px solid ${edition.palette.border}`, background: edition.palette.bg, position: 'sticky', top: 0, zIndex: 10 }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: edition.palette.text, fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', textDecoration: 'none' }}>
-            <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: edition.palette.primary }} />
+            <span style={{ width: '24px', height: '24px', borderRadius: '4px', background: edition.palette.primary }} />
             Clearline 7
           </Link>
           <nav style={{ display: 'flex', gap: '24px' }}>
@@ -59,14 +74,14 @@ export function EditionPage() {
           <h2 style={{ fontSize: '32px', marginBottom: '24px', color: edition.palette.primary }}>
             Simple Pricing
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
             <div style={{
               background: edition.palette.card,
               border: `1px solid ${edition.palette.border}`,
               borderRadius: '12px',
               padding: '24px',
             }}>
-              <h3 style={{ color: edition.palette.primary }}>Starter</h3>
+              <h3 style={{ color: edition.palette.primary, margin: 0 }}>Starter</h3>
               <div style={{ fontSize: '36px', fontWeight: 700, color: edition.palette.primary, margin: '12px 0' }}>
                 $39
               </div>
@@ -92,12 +107,12 @@ export function EditionPage() {
               borderRadius: '12px',
               padding: '24px',
             }}>
-              <h3 style={{ color: edition.palette.primary }}>Pro Bundle</h3>
+              <h3 style={{ color: edition.palette.primary, margin: 0 }}>Pro Bundle</h3>
               <div style={{ fontSize: '36px', fontWeight: 700, color: edition.palette.primary, margin: '12px 0' }}>
                 $149
               </div>
               <p style={{ color: edition.palette.muted, marginBottom: '18px' }}>
-                All 4 editions + Notion library
+                All 7 editions + Notion library
               </p>
               <button style={{
                 width: '100%',
@@ -116,7 +131,7 @@ export function EditionPage() {
         </section>
 
         {/* Form */}
-        <section id="form" style={{ padding: '50px 0' }}>
+        <section id="form" style={{ padding: '50px 0 100px 0' }}>
           <h2 style={{ fontSize: '32px', marginBottom: '24px', color: edition.palette.primary }}>
             Try {edition.name}
           </h2>
@@ -220,7 +235,7 @@ export function EditionPage() {
       </main>
 
       {/* Footer */}
-      <footer style={{ borderTop: `1px solid ${edition.palette.border}`, padding: '30px 0', marginTop: '40px' }}>
+      <footer style={{ borderTop: `1px solid ${edition.palette.border}`, padding: '30px 0' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px', textAlign: 'center', color: edition.palette.muted }}>
           <p>© 2025 Clearline 7. All rights reserved.</p>
         </div>
