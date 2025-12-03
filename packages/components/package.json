@@ -4,7 +4,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/StandardDocTemplate/style.css dist/StandardDocTemplate/style.css",
     "dev": "tsc --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -12,6 +12,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@clearline7/set-definitions": "workspace:*",
     "@clearline7/theme": "workspace:*",
     "react": "^19.2.0"
   },

@@ -1,147 +1,97 @@
-// apps/landing/src/editions/editions.ts
+import BlogPosts from './BlogPosts.js'
+import Clearline7 from './Clearline7.js'
+import ClericalOfficePro from './ClericalOfficePro.js'
+import ClerkRoomStandard from './ClerkRoomStandard.js'
+import FederalFlow from './FederalFlow.js'
+import TechDocs from './TechDocs.js'
+import WikiGuidelines from './WikiGuidelines.js'
+import SetDefinition from './SetDefinition.js'
 
-export const editions = {
+export interface EditionMeta {
+  name: string
+  slug: string
+  tagline: string
+  hero: string
+  description: string
+  features: string[]
+  icon: string
+}
+
+export interface EditionEntry extends EditionMeta {
+  definition: SetDefinition
+}
+
+export const editions: Record<string, EditionEntry> = {
   federal: {
     name: 'Federal Flow',
     slug: 'federal',
     tagline: 'Strict compliance standards.',
-    palette: {
-      primary: '#1B3A6B',
-      secondary: '#2E5090',
-      accent: '#4A7BA7',
-      success: '#2D5016',
-      bg: '#FFFFFF',
-      card: '#F5F7FA',
-      text: '#0A0E27',
-      muted: '#5A6B7D',
-      border: '#D4DCE6',
-    },
     hero: 'Federal Flow',
     description: 'Trusted by federal agencies and legal teams.',
     features: ['Serif-first typography', 'Compliance-ready spacing', 'Multi-level clearance marks'],
     icon: '🏛️',
+    definition: FederalFlow,
   },
   tech: {
     name: 'Tech Docs',
     slug: 'tech',
     tagline: 'API & architectural clarity.',
-    palette: {
-      primary: '#0F172A',
-      secondary: '#1E293B',
-      accent: '#06B6D4',
-      success: '#10B981',
-      bg: '#FFFFFF',
-      card: '#F1F5F9',
-      text: '#0F172A',
-      muted: '#64748B',
-      border: '#CBD5E1',
-    },
     hero: 'Tech Documentation',
     description: 'Code blocks, syntax highlighting, and technical clarity.',
     features: ['Monospaced code blocks', 'Syntax palette', 'Callout styles for APIs'],
     icon: '💻',
+    definition: TechDocs,
   },
   clerk: {
     name: 'Clerk Room',
     slug: 'clerk',
     tagline: 'Standard administrative logging.',
-    palette: {
-      primary: '#4B5563',
-      secondary: '#6B7280',
-      accent: '#9CA3AF',
-      success: '#22C55E',
-      bg: '#FFFFFF',
-      card: '#F9FAFB',
-      text: '#1F2937',
-      muted: '#4B5563',
-      border: '#D1D5DB',
-    },
     hero: 'Clerk Room Standard',
     description: 'Perfect for forms, reports, and administrative tasks.',
     features: ['Compact layouts', 'Clear form elements', 'High information density'],
     icon: '🗄️',
+    definition: ClerkRoomStandard,
   },
   wiki: {
     name: 'Wiki Guidelines',
     slug: 'wiki',
     tagline: 'Collaborative knowledge base.',
-    palette: {
-      primary: '#4F7328',
-      secondary: '#5F9B2E',
-      accent: '#84CC16',
-      success: '#22C55E',
-      bg: '#FFFFFF',
-      card: '#F7FEE7',
-      text: '#1B1F0B',
-      muted: '#6B7280',
-      border: '#D4D4D8',
-    },
     hero: 'Wiki Guidelines',
     description: 'Inclusive design for team wikis and documentation.',
     features: ['Accessible color palette', 'TOC emphasis', 'Collaborative formatting'],
     icon: '📚',
+    definition: WikiGuidelines,
   },
   blog: {
     name: 'Blog Posts',
     slug: 'blog',
     tagline: 'External comms & announcements.',
-    palette: {
-      primary: '#D97706',
-      secondary: '#F59E0B',
-      accent: '#FCD34D',
-      success: '#10B981',
-      bg: '#FFFFFF',
-      card: '#FFFBEB',
-      text: '#451A03',
-      muted: '#B45309',
-      border: '#FDE68A',
-    },
     hero: 'Blog & Comms',
     description: 'Craft compelling blog posts with ease.',
     features: ['Optimized for web readability', 'Rich media support', 'Engaging typography'],
     icon: '✍️',
+    definition: BlogPosts,
   },
   pro: {
     name: 'Clerical Pro',
     slug: 'pro',
     tagline: 'Executive summaries & briefs.',
-    palette: {
-      primary: '#2F5597',
-      secondary: '#385D8A',
-      accent: '#64748B',
-      success: '#16A34A',
-      bg: '#FFFFFF',
-      card: '#F8FAFC',
-      text: '#0F172A',
-      muted: '#64748B',
-      border: '#E2E8F0',
-    },
     hero: 'Clerical Pro',
     description: 'Clean, contemporary style for corporate teams.',
     features: ['Modern sans-serif', 'Subtle color accents', 'Quick style sets'],
     icon: '💼',
+    definition: ClericalOfficePro,
   },
   base: {
     name: 'Clearline Base',
     slug: 'base',
     tagline: 'The universal foundation.',
-    palette: {
-      primary: '#1E3A8A',
-      secondary: '#385D8A',
-      accent: '#14B8A6',
-      success: '#16A34A',
-      bg: '#FFFFFF',
-      card: '#F9FAFB',
-      text: '#1F2937',
-      muted: '#6B7280',
-      border: '#E5E7EB',
-    },
     hero: 'Clearline Base',
     description: 'A versatile and balanced style for general use.',
     features: ['Clean typography', 'Neutral color palette', 'Standard document layouts'],
     icon: '✨',
+    definition: Clearline7,
   },
-};
+}
 
-export type Edition = typeof editions[keyof typeof editions];
-export type EditionKey = keyof typeof editions;
+export type EditionKey = keyof typeof editions

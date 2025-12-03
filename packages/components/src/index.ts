@@ -1,4 +1,5 @@
 // Document Components
+export * from './StandardDocTemplate'
 export * from './document/Blockquote'
 export * from './document/Heading'
 export * from './document/Paragraph'
