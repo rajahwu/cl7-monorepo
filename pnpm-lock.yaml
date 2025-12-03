@@ -65,9 +65,15 @@ importers:
 
   apps/landing:
     dependencies:
+      '@clearline7/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@clearline7/set-definitions':
         specifier: workspace:*
         version: link:../../packages/set-definitions
+      '@clearline7/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
       lucide-react:
         specifier: ^0.546.0
         version: 0.546.0(react@19.2.0)
@@ -236,6 +242,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@clearline7/set-definitions':
+        specifier: workspace:*
+        version: link:../set-definitions
       '@clearline7/theme':
         specifier: workspace:*
         version: link:../theme

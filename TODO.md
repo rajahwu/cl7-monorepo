@@ -30,16 +30,26 @@
 
 ### Phase 2: Build the Engine
 
-- [ ] **StandardDocTemplate:** Create/Verify `StandardDocTemplate` component in `packages/components`.
-  - [ ] Should accept a `SetDefinition` and content.
-  - [ ] Should drive both screen rendering and export generation logic.
+- [x] **StandardDocTemplate:** Create/Verify `StandardDocTemplate` component in `packages/components`.
+  - [x] Should accept a `SetDefinition` and content.
+
+  - [x] Should drive both screen rendering and export generation logic.
 
 ### Phase 3: Build Exporters (`packages/generators`)
 
-- [ ] **Scaffold Generators:**
-  - [ ] Create `src/adapters/WordAdapter.ts` (using `docx` or similar).
-  - [ ] Create `src/adapters/MarkdownAdapter.ts`.
-  - [ ] Implement Adapter pattern for pluggable outputs.
+- [x] **Scaffold Generators:**
+  - [x] Create `src/adapters/WordAdapter.ts` (using `docx` or similar).
+
+  - [x] Create `src/adapters/MarkdownAdapter.ts`.
+
+  - [x] Implement Adapter pattern for pluggable outputs.
+
+### Phase 4: Reintegration
+
+- [x] **Update `apps/landing`:**
+  - [x] Modify `apps/landing` to import `SetDefinition` instances directly from `@clearline7/set-definitions`.
+  - [x] Integrate the new `StandardDocTemplate` from `@clearline7/components` for rendering.
+  - [x] Update any existing routing or logic to utilize the centralized definitions and template.
 
 ## 🛠️ DevOps & Code Quality
 

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { EditionEntry as Edition } from '@clearline7/set-definitions'
+import { StandardDocTemplate } from '@clearline7/components'
+import { SampleDocument } from './SampleDocument'
 
 interface EditionHeroProps {
   edition: Edition
@@ -76,19 +78,28 @@ export function EditionHero({ edition }: EditionHeroProps) {
         </div>
         <div
           style={{
-            background: edition.definition.colors.card,
-            border: `2px solid ${edition.definition.colors.primary}`,
+            background: '#e5e7eb', // Neutral background for contrast
+            border: `1px solid ${edition.definition.colors.border}`,
             borderRadius: '12px',
-            padding: '20px',
-            minHeight: '280px',
+            height: '600px', // Fixed height for the preview window
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '14px',
-            color: edition.definition.colors.muted,
+            overflow: 'hidden',
           }}
         >
-          {edition.name} Preview
+          <div
+            style={{
+              transform: 'scale(0.5)',
+              transformOrigin: 'center',
+              boxShadow:
+                '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            }}
+          >
+            <StandardDocTemplate definition={edition.definition}>
+              <SampleDocument />
+            </StandardDocTemplate>
+          </div>
         </div>
       </div>
     </section>

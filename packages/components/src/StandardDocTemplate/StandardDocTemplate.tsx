@@ -28,7 +28,7 @@ export function StandardDocTemplate({
   }
 
   return (
-    <SetDefinitionProvider definition={definition}>
+    <SetDefinitionProvider setDefinition={definition}>
       <div className={`cl7-document-page ${className}`} style={pageStyle}>
         {children}
       </div>
