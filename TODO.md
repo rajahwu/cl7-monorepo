@@ -68,4 +68,4 @@
   - [ ] Delete stale branches (check git).
 
 - [ ] **Architecture**
-  - [ ] Update `ARCHITECTURE.md` with diagram of the Generator Pipeline.
+  - [x] Update `ARCHITECTURE.md` with diagram of the Generator Pipeline.
