@@ -65,6 +65,9 @@ importers:
 
   apps/landing:
     dependencies:
+      '@clearline7/set-definitions':
+        specifier: workspace:*
+        version: link:../../packages/set-definitions
       lucide-react:
         specifier: ^0.546.0
         version: 0.546.0(react@19.2.0)

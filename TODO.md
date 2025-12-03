@@ -21,10 +21,12 @@
 
 ### Phase 1: Centralize Data
 
-- [ ] **Migrate Editions:** Refactor `apps/landing` to remove local `src/editions` and consume `@clearline7/set-definitions`.
-  - [ ] Verify `packages/set-definitions` contains all necessary definitions from landing page.
-  - [ ] Update `apps/landing` imports.
-  - [ ] Delete `apps/landing/src/editions`.
+- [x] **Migrate Editions:** Refactor `apps/landing` to remove local `src/editions` and consume `@clearline7/set-definitions`.
+  - [x] Verify `packages/set-definitions` contains all necessary definitions from landing page.
+
+  - [x] Update `apps/landing` imports.
+
+  - [x] Delete `apps/landing/src/editions`.
 
 ### Phase 2: Build the Engine
 
