@@ -6,7 +6,20 @@ import { Navigation } from './components/Navigation'
 import Overview from './pages/Overview'
 import SpecimenPage from './pages/SpecimenPage'
 
-// Component pages
+// Guide pages (The Style Guide)
+import {
+  IntroPage,
+  PhilosophyPage,
+  MatrixPage,
+  WritingPage,
+  GrammarPage,
+  LayoutPage,
+  TemplatesPage,
+  ImplementationPage,
+  GovernancePage,
+} from './pages/guide'
+
+// Component pages (Preview/Specimens)
 import BlockquotePage from './pages/components/BlockquotePage'
 import HeadingPage from './pages/components/HeadingPage'
 import ParagraphPage from './pages/components/ParagraphPage'
@@ -39,13 +52,15 @@ function App() {
       <BrowserRouter>
         <div style={{ display: 'flex' }}>
           <Navigation isOpen={isNavOpen} toggle={toggleNav} />
-          <main style={{
-            marginLeft: isNavOpen ? '250px' : '0',
-            padding: '40px',
-            flex: 1,
-            maxWidth: '900px',
-            transition: 'margin-left 0.3s',
-          }}>
+          <main
+            style={{
+              marginLeft: isNavOpen ? '250px' : '0',
+              padding: '40px',
+              flex: 1,
+              maxWidth: '900px',
+              transition: 'margin-left 0.3s',
+            }}
+          >
             <button
               onClick={toggleNav}
               style={{
@@ -64,6 +79,23 @@ function App() {
             </button>
             <Routes>
               <Route path="/" element={<Overview />} />
+
+              {/* Part I: The Style System */}
+              <Route path="/guide/intro" element={<IntroPage />} />
+              <Route path="/guide/philosophy" element={<PhilosophyPage />} />
+              <Route path="/guide/matrix" element={<MatrixPage />} />
+
+              {/* Part II: The Core Guide */}
+              <Route path="/guide/writing" element={<WritingPage />} />
+              <Route path="/guide/grammar" element={<GrammarPage />} />
+              <Route path="/guide/layout" element={<LayoutPage />} />
+
+              {/* Part III: Implementation & Governance */}
+              <Route path="/guide/templates" element={<TemplatesPage />} />
+              <Route path="/guide/implementation" element={<ImplementationPage />} />
+              <Route path="/guide/governance" element={<GovernancePage />} />
+
+              {/* Part IV: Technical Reference (Specimens) */}
               <Route path="/specimen" element={<SpecimenPage />} />
 
               {/* Document Components */}
