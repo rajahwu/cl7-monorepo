@@ -1,0 +1,32 @@
+.cl7-document-page {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-bodyFont), var(--font-bodyFallback);
+  font-size: var(--font-bodySize);
+  line-height: var(--font-lineHeightNormal);
+
+  /* Default to US Letter if not specified, but customizable via CSS vars if needed */
+  width: 8.5in;
+  min-height: 11in;
+  margin: 2rem auto;
+  padding: 1in; /* Default padding, usually overridden by inline styles or set defs */
+
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+@media print {
+  .cl7-document-page {
+    margin: 0;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+    padding: 0; /* Let the print driver handle margins or use @page */
+  }
+
+  @page {
+    margin: 1in; /* Default print margin */
+  }
+}
