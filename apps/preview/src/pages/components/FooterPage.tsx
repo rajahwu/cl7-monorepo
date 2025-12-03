@@ -4,9 +4,7 @@ export default function FooterPage() {
   return (
     <div>
       <H1>Footer Component</H1>
-      <Paragraph>
-        The Footer component provides a container for page footers.
-      </Paragraph>
+      <Paragraph>The Footer component provides a container for page footers.</Paragraph>
 
       <H2>Basic Footer</H2>
       <Footer>

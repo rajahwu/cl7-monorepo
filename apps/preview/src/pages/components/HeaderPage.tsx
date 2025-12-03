@@ -9,9 +9,7 @@ export default function HeaderPage() {
       </Paragraph>
 
       <H2>Basic Header</H2>
-      <Header logo={<span style={{ fontWeight: 'bold' }}>Logo</span>}>
-        Navigation content
-      </Header>
+      <Header logo={<span style={{ fontWeight: 'bold' }}>Logo</span>}>Navigation content</Header>
 
       <H2>Code Example</H2>
       <Code>{`import { Header } from '@clearline7/components'

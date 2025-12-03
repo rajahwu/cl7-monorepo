@@ -12,8 +12,8 @@ export default function CardPage() {
       <Card>
         <H2>Card Title</H2>
         <Paragraph>
-          This content is wrapped in a Card component, which provides
-          visual separation from the surrounding content.
+          This content is wrapped in a Card component, which provides visual separation from the
+          surrounding content.
         </Paragraph>
       </Card>
 

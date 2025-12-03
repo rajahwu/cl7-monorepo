@@ -141,47 +141,22 @@ export function Navigation({ isOpen, toggle }: NavigationProps) {
         </NavLink>
       </div>
 
-      {/* Components (Specimens) */}
       <div style={sectionStyle}>
-        <h3 style={headingStyle}>Components</h3>
-        <NavLink to="/specimen" style={linkStyle}>
-          Specimen Sheet
-        </NavLink>
-        <NavLink to="/components/heading" style={linkStyle}>
-          Heading
-        </NavLink>
-        <NavLink to="/components/paragraph" style={linkStyle}>
-          Paragraph
-        </NavLink>
-        <NavLink to="/components/blockquote" style={linkStyle}>
-          Blockquote
-        </NavLink>
-        <NavLink to="/components/code" style={linkStyle}>
-          Code
-        </NavLink>
-        <NavLink to="/components/list" style={linkStyle}>
-          List
-        </NavLink>
-        <NavLink to="/components/card" style={linkStyle}>
-          Card
-        </NavLink>
-      </div>
-
-      {/* UI Components */}
-      <div style={sectionStyle}>
-        <h3 style={headingStyle}>UI Components</h3>
-        <NavLink to="/components/button" style={linkStyle}>
-          Button
-        </NavLink>
-        <NavLink to="/components/header" style={linkStyle}>
-          Header
-        </NavLink>
-        <NavLink to="/components/footer" style={linkStyle}>
-          Footer
-        </NavLink>
-        <NavLink to="/components/navigation" style={linkStyle}>
-          Navigation
-        </NavLink>
+        <h3 style={headingStyle}>Live Preview</h3>
+        <a
+          href="http://localhost:5174"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...linkStyle({ isActive: false }),
+            color: '#2563EB',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          Launch Component Preview ↗
+        </a>
       </div>
     </nav>
   )

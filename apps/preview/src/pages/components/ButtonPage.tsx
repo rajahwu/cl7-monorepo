@@ -4,9 +4,7 @@ export default function ButtonPage() {
   return (
     <div>
       <H1>Button Component</H1>
-      <Paragraph>
-        The Button component provides styled buttons with variants and sizes.
-      </Paragraph>
+      <Paragraph>The Button component provides styled buttons with variants and sizes.</Paragraph>
 
       <H2>Variants</H2>
       <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>

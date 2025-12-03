@@ -1,143 +1,104 @@
-import { useState, useRef } from 'react'
+import { useSearchParams, Link, Routes, Route, Navigate } from 'react-router-dom'
 import { SetDefinitionProvider } from '@clearline7/theme'
-import {
-  Clearline7,
-  BlogPosts,
-  ClericalOfficePro,
-  ClerkRoomStandard,
-  FederalFlow,
-  TechDocs,
-  WikiGuidelines,
-  SetDefinition
-} from '@clearline7/set-definitions'
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import './style.css'
-// import HtmlToDocx from '@turbodocx/html-to-docx'
-// import { saveAs } from 'file-saver'
-// import html2pdf from 'html2pdf.js'
+import { editions, EditionEntry } from '@clearline7/set-definitions'
+import { StyleSetSelector } from './components/StyleSetSelector'
 
-const STYLE_SETS: Record<string, SetDefinition> = {
-  'Clearline 7': Clearline7,
-  'Blog Posts': BlogPosts,
-  'Clerical Office Pro': ClericalOfficePro,
-  'ClerkRoom Standard': ClerkRoomStandard,
-  'Federal Flow': FederalFlow,
-  'TechDocs': TechDocs,
-  'Wiki Guidelines': WikiGuidelines,
-}
+// Pages
+import SpecimenPage from './pages/SpecimenPage'
+import BlockquotePage from './pages/components/BlockquotePage'
+import ButtonPage from './pages/components/ButtonPage'
+import CardPage from './pages/components/CardPage'
+import CodePage from './pages/components/CodePage'
+import FooterPage from './pages/components/FooterPage'
+import HeaderPage from './pages/components/HeaderPage'
+import HeadingPage from './pages/components/HeadingPage'
+import ListPage from './pages/components/ListPage'
+import NavigationPage from './pages/components/NavigationPage'
+import ParagraphPage from './pages/components/ParagraphPage'
 
-const App = () => {
-  const [activeSet, setActiveSet] = useState('Clearline 7')
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-    ],
-    content: `
-      <h1>Welcome to the ClearLine7 Preview</h1>
-      <p>This is a basic preview of the editor. You can change the style set on the left to see how it affects the content.</p>
-      <ul>
-        <li>This is a list item.</li>
-        <li>And another one.</li>
-      </ul>
-      <blockquote>
-        This is a blockquote.
-      </blockquote>
-      <pre><code>This is a code block.</code></pre>
-    `,
-  })
-  const contentRef = useRef<HTMLDivElement>(null)
+export default function App() {
+  const [searchParams] = useSearchParams()
+  const currentSlug = searchParams.get('set') || 'federal'
 
-  // const exportToWord = async () => {
-  //   if (editor) {
-  //     const html = editor.getHTML()
-  //     const docx = await HtmlToDocx(html)
-  //     saveAs(docx, 'document.docx')
-  //   }
-  // }
-
-  // const exportToPdf = () => {
-  //   if (contentRef.current) {
-  //     const element = contentRef.current
-  //     html2pdf().from(element).save('document.pdf')
-  //   }
-  // }
+  // Find the definition object based on the slug
+  const activeEdition =
+    (Object.values(editions) as EditionEntry[]).find((e) => e.slug === currentSlug) ||
+    editions.federal
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <aside style={{
-        width: '250px',
-        padding: '20px',
-        backgroundColor: '#f5f5f5',
-        borderRight: '1px solid #ddd',
-      }}>
-        <h2 style={{ margin: '0 0 20px 0', fontSize: '18px' }}>Preview Controls</h2>
+    <SetDefinitionProvider setDefinition={activeEdition.definition}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        <header style={{ borderBottom: '1px solid #ccc' }}>
+          <StyleSetSelector />
+        </header>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
-            Style Set
-          </label>
-          <select
-            value={activeSet}
-            onChange={(e) => setActiveSet(e.target.value)}
+        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+          <nav
             style={{
-              width: '100%',
-              padding: '8px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
+              width: '250px',
+              borderRight: '1px solid #ccc',
+              overflowY: 'auto',
+              padding: '1rem',
+              background: '#f9f9f9',
             }}
           >
-            {Object.keys(STYLE_SETS).map(key => (
-              <option key={key} value={key}>{key}</option>
-            ))}
-          </select>
+            <h3 style={{ marginTop: 0 }}>Components</h3>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/specimen?set=${currentSlug}`}>Specimen Sheet</Link>
+              </li>
+              <hr style={{ margin: '1rem 0' }} />
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/blockquote?set=${currentSlug}`}>Blockquote</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/button?set=${currentSlug}`}>Button</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/card?set=${currentSlug}`}>Card</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/code?set=${currentSlug}`}>Code</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/footer?set=${currentSlug}`}>Footer</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/header?set=${currentSlug}`}>Header</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/heading?set=${currentSlug}`}>Heading</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/list?set=${currentSlug}`}>List</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/navigation?set=${currentSlug}`}>Navigation</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/components/paragraph?set=${currentSlug}`}>Paragraph</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <main style={{ flex: 1, overflowY: 'auto', padding: '2rem', background: '#fff' }}>
+            <Routes>
+              <Route path="/" element={<Navigate to={`/specimen?set=${currentSlug}`} replace />} />
+              <Route path="/specimen" element={<SpecimenPage />} />
+              <Route path="/components/blockquote" element={<BlockquotePage />} />
+              <Route path="/components/button" element={<ButtonPage />} />
+              <Route path="/components/card" element={<CardPage />} />
+              <Route path="/components/code" element={<CodePage />} />
+              <Route path="/components/footer" element={<FooterPage />} />
+              <Route path="/components/header" element={<HeaderPage />} />
+              <Route path="/components/heading" element={<HeadingPage />} />
+              <Route path="/components/list" element={<ListPage />} />
+              <Route path="/components/navigation" element={<NavigationPage />} />
+              <Route path="/components/paragraph" element={<ParagraphPage />} />
+            </Routes>
+          </main>
         </div>
-
-        {/* <button
-          onClick={exportToWord}
-          style={{
-            width: '100%',
-            padding: '10px',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginBottom: '10px',
-          }}
-        >
-          Export to Word
-        </button> */}
-
-        {/* <button
-          onClick={exportToPdf}
-          style={{
-            width: '100%',
-            padding: '10px',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Export to PDF
-        </button> */}
-
-        <div style={{ fontSize: '14px', color: '#666', marginTop: '20px' }}>
-          <p>Select a style set to preview how your document will look with different styling.</p>
-        </div>
-      </aside>
-
-      <main style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
-        <SetDefinitionProvider setDefinition={STYLE_SETS[activeSet]}>
-          <div ref={contentRef}>
-            <EditorContent editor={editor} />
-          </div>
-        </SetDefinitionProvider>
-      </main>
-    </div>
+      </div>
+    </SetDefinitionProvider>
   )
 }
-
-export default App
