@@ -48,7 +48,7 @@ export interface ShadowAttributes {
   high: string
 }
 
-class SetDefinition {
+export default class SetDefinition {
   colors: ColorAttributes
   typography: TypographyAttributes
   spacing: SpacingAttributes
@@ -139,7 +139,7 @@ class SetDefinition {
     }
   }
 
-  // --- toCSS(), toJSON(), getPrintStyles() stay the same ---
+  // --- Standard CSS Variables (Runtime switching) ---
   toCSS(): string {
     const colorVars = Object.entries(this.colors)
       .map(([key, value]) => `--color-${key}: ${value};`)
@@ -164,6 +164,45 @@ class SetDefinition {
     }
 
     return `:root {\n${colorVars}\n${fontVars}\n${radiusVars}\n${shadowVars}\n${spacingVars}}\n`
+  }
+
+  // --- Tailwind v4 Theme Block ---
+  // In v4, you define theme variables inside @theme { ... }
+  // This method outputs a CSS block that you can inject into your main CSS file
+  toTailwindCSS(): string {
+    const colorVars = Object.entries(this.colors)
+      .map(([key, value]) => `--color-${key}: ${value};`)
+      .join('\n  ')
+
+    const fontVars = `
+  --font-body: ${this.typography.bodyFont}, ${this.typography.bodyFallback};
+  --font-heading: ${this.typography.headingFont};
+  --font-mono: ${this.typography.monoFont};`
+
+    const radiusVars = Object.entries(this.radius)
+      .map(([key, value]) => `--radius-${key}: ${value};`)
+      .join('\n  ')
+
+    // Tailwind v4 uses --spacing-* for spacing scale
+    const spacingVars = Object.entries(this.spacing.scale)
+      .map(([key, value]) => `--spacing-${key}: ${value};`)
+      .join('\n  ')
+
+    return `
+@theme {
+  /* Colors */
+  ${colorVars}
+
+  /* Typography */
+  ${fontVars}
+
+  /* Radius */
+  ${radiusVars}
+
+  /* Spacing */
+  ${spacingVars}
+}
+`
   }
 
   toJSON(): string {
@@ -219,5 +258,3 @@ class SetDefinition {
     `
   }
 }
-
-export default SetDefinition
