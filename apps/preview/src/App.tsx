@@ -5,6 +5,10 @@ import { StyleSetSelector } from './components/StyleSetSelector'
 
 // Pages
 import SpecimenPage from './pages/SpecimenPage'
+import { DocumentPreview } from './pages/DocumentPreview'
+import { ColorSpecimen } from './pages/specimens/ColorSpecimen'
+import { TypographySpecimen } from './pages/specimens/TypographySpecimen'
+import { SpacingSpecimen } from './pages/specimens/SpacingSpecimen'
 import BlockquotePage from './pages/components/BlockquotePage'
 import ButtonPage from './pages/components/ButtonPage'
 import CardPage from './pages/components/CardPage'
@@ -42,11 +46,27 @@ export default function App() {
               background: '#f9f9f9',
             }}
           >
-            <h3 style={{ marginTop: 0 }}>Components</h3>
+            <h3 style={{ marginTop: 0 }}>Previews</h3>
             <ul style={{ listStyle: 'none', padding: 0 }}>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/document?set=${currentSlug}`}>Document Preview</Link>
+              </li>
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={`/specimen?set=${currentSlug}`}>Specimen Sheet</Link>
               </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/specimens/typography?set=${currentSlug}`}>Typography</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/specimens/colors?set=${currentSlug}`}>Colors</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/specimens/spacing?set=${currentSlug}`}>Spacing</Link>
+              </li>
+            </ul>
+
+            <h3>Components</h3>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
               <hr style={{ margin: '1rem 0' }} />
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={`/components/blockquote?set=${currentSlug}`}>Blockquote</Link>
@@ -83,8 +103,12 @@ export default function App() {
 
           <main style={{ flex: 1, overflowY: 'auto', padding: '2rem', background: '#fff' }}>
             <Routes>
-              <Route path="/" element={<Navigate to={`/specimen?set=${currentSlug}`} replace />} />
+              <Route path="/" element={<Navigate to={`/document?set=${currentSlug}`} replace />} />
+              <Route path="/document" element={<DocumentPreview />} />
               <Route path="/specimen" element={<SpecimenPage />} />
+              <Route path="/specimens/typography" element={<TypographySpecimen />} />
+              <Route path="/specimens/colors" element={<ColorSpecimen />} />
+              <Route path="/specimens/spacing" element={<SpacingSpecimen />} />
               <Route path="/components/blockquote" element={<BlockquotePage />} />
               <Route path="/components/button" element={<ButtonPage />} />
               <Route path="/components/card" element={<CardPage />} />

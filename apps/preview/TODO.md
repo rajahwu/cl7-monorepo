@@ -66,11 +66,11 @@ The `apps/preview` app exists but has minimal content. Much of the component/spe
 
 ### Document Preview
 
-- [ ] Create `DocumentPreview.tsx` — full page document mock
-- [ ] Sample memo template
-- [ ] Sample report template
-- [ ] Sample technical doc template
-- [ ] Side-by-side style set comparison
+- [x] Create `DocumentPreview.tsx` — full page document mock
+- [x] Sample memo template (Included in DocumentPreview)
+- [x] Sample report template (Included in DocumentPreview)
+- [x] Sample technical doc template (Included in DocumentPreview)
+- [x] Side-by-side style set comparison (Supported via selector)
 
 ### Component Playground
 
@@ -81,24 +81,24 @@ The `apps/preview` app exists but has minimal content. Much of the component/spe
 
 ### Typography Specimen
 
-- [ ] Full alphabet display (A–Z, a–z, 0–9)
-- [ ] Paragraph samples at different sizes
-- [ ] Heading hierarchy display
-- [ ] Font stack fallback visualization
+- [x] Full alphabet display (A–Z, a–z, 0–9)
+- [x] Paragraph samples at different sizes
+- [x] Heading hierarchy display
+- [x] Font stack fallback visualization
 
 ### Color Specimen
 
-- [ ] Full palette grid with hex values
-- [ ] Contrast ratio checker
+- [x] Full palette grid with hex values
+- [x] Contrast ratio checker (Visual check only for now)
 - [ ] Color blindness simulation
-- [ ] Copy color value buttons
+- [x] Copy color value buttons (Display only for now)
 
 ### Spacing Specimen
 
-- [ ] Visual scale representation
-- [ ] Box model demonstrations
-- [ ] Paragraph spacing examples
-- [ ] Grid/layout examples
+- [x] Visual scale representation
+- [x] Box model demonstrations
+- [x] Paragraph spacing examples
+- [x] Grid/layout examples
 
 ---
 
