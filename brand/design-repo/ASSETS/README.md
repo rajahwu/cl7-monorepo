@@ -138,3 +138,18 @@ Legend:
 All assets must be documented in [ASSET_MANIFEST.md](../ASSET_MANIFEST.md).  
 Updates to palettes or naming conventions must be reflected in `README_assets.md`.
 This ensures clarity, traceability, and consistency across all brand-aesthetic assets.
+
+## Progress Tracker
+
+| Set               | Icons | Emoji Equivalents | Clip Art | Prompt Stub |
+| ----------------- | ----- | ----------------- | -------- | ----------- |
+| WikiGuides        | ☐     | ☐                 | ☐        | ✅          |
+| BoxKit            | ☐     | ☐                 | ☐        | ✅          |
+| FederalFlow       | ☐     | ☐                 | ☐        | ✅          |
+| ElementSeven      | ☐     | ☐                 | ☐        | ✅          |
+| Clearline7        | ☐     | ☐                 | ☐        | ✅          |
+| TechDocs          | ☐     | ☐                 | ☐        | ✅          |
+| TechLaw           | ☐     | ☐                 | ☐        | ✅          |
+| ClerkRoomStandard | ☐     | ☐                 | ☐        | ✅          |
+| BlogPost          | ☐     | ☐                 | ☐        | ✅          |
+| ClericalOfficePro | ☐     | ☐                 | ☐        | ✅          |
