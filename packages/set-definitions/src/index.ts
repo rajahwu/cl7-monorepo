@@ -6,6 +6,7 @@ import ClerkRoomStandard from './ClerkRoomStandard.js'
 import FederalFlow from './FederalFlow.js'
 import TechDocs from './TechDocs.js'
 import WikiGuidelines from './WikiGuidelines.js'
+import { BoxKit, ElementSeven, TechLaw } from './brand-aesthetics/index.js'
 
 export {
   SetDefinition,
@@ -16,9 +17,9 @@ export {
   FederalFlow,
   TechDocs,
   WikiGuidelines,
+  BoxKit,
+  ElementSeven,
+  TechLaw,
 }
 
 export * from './editions.js'
-export * from './brand-aesthetics/BoxKit'
-export * from './brand-aesthetics/TechLaw'
-export * from './brand-aesthetics/ElementSeven'

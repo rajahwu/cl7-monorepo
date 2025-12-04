@@ -7,6 +7,8 @@ import TechDocs from './TechDocs.js'
 import WikiGuidelines from './WikiGuidelines.js'
 import SetDefinition from './SetDefinition.js'
 
+import { BoxKit, ElementSeven, TechLaw } from './brand-aesthetics/index.js'
+
 export interface EditionMeta {
   name: string
   slug: string
@@ -91,6 +93,36 @@ export const editions: Record<string, EditionEntry> = {
     features: ['Clean typography', 'Neutral color palette', 'Standard document layouts'],
     icon: '✨',
     definition: Clearline7,
+  },
+  boxkit: {
+    name: 'BoxKit',
+    slug: 'boxkit',
+    tagline: 'Brand-aligned corporate style.',
+    hero: 'BoxKit',
+    description: 'Sleek and professional documents for corporate branding.',
+    features: ['Brand colors', 'Modern typography', 'Professional layouts'],
+    icon: '📦',
+    definition: BoxKit,
+  },
+  element7: {
+    name: 'Element Seven',
+    slug: 'element7',
+    tagline: 'Creative and dynamic designs.',
+    hero: 'Element Seven',
+    description: 'Vibrant and engaging style for creative projects.',
+    features: ['Bold colors', 'Dynamic typography', 'Innovative layouts'],
+    icon: '🎨',
+    definition: ElementSeven,
+  },
+  techlaw: {
+    name: 'TechLaw',
+    slug: 'techlaw',
+    tagline: 'Legal documents for tech firms.',
+    hero: 'TechLaw',
+    description: 'Precise and clear style for legal documentation in the tech industry.',
+    features: ['Clear typography', 'Structured layouts', 'Legal formatting'],
+    icon: '⚖️',
+    definition: TechLaw,
   },
 }
 
