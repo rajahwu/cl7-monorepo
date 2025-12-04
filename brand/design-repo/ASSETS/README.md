@@ -98,6 +98,35 @@ Each subfolder corresponds to a set and includes a README with palette notes, us
 
 [ ] Create clip art illustrations
 
+📊 Progress Tracker
+
+| Set                   | Icons | Emoji Equivalents | Clip Art | Prompt Stub |
+| --------------------- | ----- | ----------------- | -------- | ----------- |
+| **BlogPost**          | ☐     | ☐                 | ☐        | ✅          |
+| **BoxKit**            | ☐     | ☐                 | ☐        | ✅          |
+| **Clearline7**        | ☐     | ☐                 | ☐        | ✅          |
+| **ClericalOfficePro** | ☐     | ☐                 | ☐        | ✅          |
+| **ClerkRoomStandard** | ☐     | ☐                 | ☐        | ✅          |
+| **ElementSeven**      | ☐     | ☐                 | ☐        | ✅          |
+| **FederalFlow**       | ☐     | ☐                 | ☐        | ✅          |
+| **TechDocs**          | ☐     | ☐                 | ☐        | ✅          |
+| **TechLaw**           | ☐     | ☐                 | ☐        | ✅          |
+| **WikiGuides**        | ☐     | ☐                 | ☐        | ✅          |
+
+Legend:
+
+- ✅ = Completed
+- ☐ = Pending
+
+---
+
+### How to Use
+
+- Update each cell as you generate assets.
+- Keep prompt stubs marked ✅ (already scaffolded).
+- Mark icons, emoji, and clip art as ✅ once assets are generated and stored in their respective folders.
+- This table lives under the **TODO Checklist** section in `ASSETS/README.md`.
+
 ## Usage
 
 - Each set folder contains icons, emoji equivalents, and clip art.
