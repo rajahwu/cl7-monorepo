@@ -15,7 +15,7 @@ export default function EditorPage() {
   const [docState, setDocState] = useState({
     title: 'Deployment Protocol v7',
     category: 'Memo',
-    theme: 'TechLaw', // Default to your "Serious" theme
+    theme: 'TechLaw',
     body: `1. OBJECTIVE
 The primary objective of this protocol is to establish a standardized formatting baseline for all mission-critical documentation.
 

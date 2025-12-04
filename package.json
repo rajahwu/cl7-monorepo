@@ -10,6 +10,7 @@
     "dev:landing": "pnpm --filter @clearline7/landing dev",
     "dev:guide": "pnpm --filter @clearline7/style-guide dev",
     "dev:preview": "pnpm --filter @clearline7/preview dev",
+    "dev:workspace": "pnpm --filter @clearline7/workspace dev",
     "dev:all": "turbo run dev --parallel",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
