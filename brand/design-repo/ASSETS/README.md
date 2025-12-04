@@ -16,6 +16,88 @@ Each subfolder corresponds to a set and includes a README with palette notes, us
 - [TechLaw](./TechLaw/README.md) — legal and compliance assets
 - [WikiGuides](./WikiGuides/README.md) — collaborative knowledge assets
 
+## TODO Checklist
+
+### BlogPost
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### BoxKit
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### Clearline7
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### ClericalOfficePro
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### ClerkRoomStandard
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### ElementSeven
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### FederalFlow
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### TechDocs
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### TechLaw
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
+### WikiGuides
+
+[ ] Define icon concepts
+
+[ ] Generate emoji equivalents
+
+[ ] Create clip art illustrations
+
 ## Usage
 
 - Each set folder contains icons, emoji equivalents, and clip art.
@@ -26,3 +108,4 @@ Each subfolder corresponds to a set and includes a README with palette notes, us
 
 All assets must be documented in [ASSET_MANIFEST.md](../ASSET_MANIFEST.md).  
 Updates to palettes or naming conventions must be reflected in `README_assets.md`.
+This ensures clarity, traceability, and consistency across all brand-aesthetic assets.
