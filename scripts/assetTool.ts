@@ -1,30 +1,38 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env bun
 
 import fs from 'fs'
 import path from 'path'
 
-// Root paths
 const assetsDir = path.resolve(__dirname, '../brand/design-repo/ASSETS')
 const readmePath = path.join(assetsDir, 'README.md')
 
-// Utility: save asset with correct naming
+// Utility: generate governed filename
+function generateFilename(set: string, type: 'icon' | 'emoji' | 'clipart', concept: string) {
+  return `${type}_${concept.toLowerCase()}_${set.toLowerCase()}.svg`
+}
+
+// Save asset with correct naming
 function saveAsset(
   set: string,
   type: 'icon' | 'emoji' | 'clipart',
   concept: string,
-  content: Buffer
+  filePath: string
 ) {
   const dir = path.join(assetsDir, set)
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
 
-  const filename = `${type}_${concept.toLowerCase()}_${set.toLowerCase()}.svg`
+  const filename = generateFilename(set, type, concept)
   const filepath = path.join(dir, filename)
 
+  console.log(`📄 Suggested filename: ${filename}`)
+  console.log(`➡️ Saving to: ${filepath}`)
+
+  const content = fs.readFileSync(filePath)
   fs.writeFileSync(filepath, content)
-  console.log(`✅ Saved asset: ${filepath}`)
+  console.log(`✅ Asset saved successfully!`)
 }
 
-// Utility: check status of a set
+// Check status of a set
 function checkStatus(set: string) {
   const dir = path.join(assetsDir, set)
   const files = fs.existsSync(dir) ? fs.readdirSync(dir) : []
@@ -41,7 +49,7 @@ function checkStatus(set: string) {
   }
 }
 
-// Command: update tracker table
+// Update tracker table
 function updateTracker() {
   const sets = fs
     .readdirSync(assetsDir)
@@ -74,6 +82,7 @@ const [, , cmd, ...args] = process.argv
 
 switch (cmd) {
   case 'save': {
+    // Usage: bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
     const [set, type, concept, filePath] = args
 
     if (!set || !type || !concept || !filePath) {
@@ -81,24 +90,24 @@ switch (cmd) {
       process.exit(1)
     }
 
-    const content = fs.readFileSync(filePath)
-
     if (!['icon', 'emoji', 'clipart'].includes(type)) {
       console.error('Type must be one of: icon | emoji | clipart')
       process.exit(1)
     }
 
-    saveAsset(set, type as 'icon' | 'emoji' | 'clipart', concept, content)
+    const assetType = type as 'icon' | 'emoji' | 'clipart'
+
+    saveAsset(set, assetType, concept, filePath)
     break
   }
 
-  case 'update':
-    // Example: ts-node scripts/assetTool.ts update
+  case 'update': {
     updateTracker()
     break
+  }
 
   default:
     console.log(`Usage:
-  ts-node scripts/assetTool.ts save <set> <type> <concept> <filePath>
-  ts-node scripts/assetTool.ts update`)
+  bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
+  bun scripts/assetTool.ts update`)
 }
