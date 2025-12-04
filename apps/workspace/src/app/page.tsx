@@ -1,4 +1,6 @@
 // src/app/page.tsx
+import Link from 'next/link'
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-bg text-text flex items-center justify-center">
@@ -25,10 +27,11 @@ export default function Home() {
             <br />
             Theme: <span className="text-accent">ElementSeven</span>
           </p>
-
-          <button className="w-full mt-4 py-3 bg-primary hover:bg-primary/80 text-white font-medium rounded-button transition-colors">
-            Initialize New Document
-          </button>
+          <Link href="/editor">
+            <button className="w-full mt-4 py-3 bg-primary hover:bg-primary/80 text-white font-medium rounded-button transition-colors">
+              Initialize New Document
+            </button>
+          </Link>
         </div>
       </div>
     </main>
