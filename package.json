@@ -17,7 +17,8 @@
     "test:coverage": "turbo run test:coverage",
     "prepare": "husky",
     "asset:save": "bun scripts/assetTool.ts save",
-    "asset:update": "bun scripts/assetTool.ts update"
+    "asset:update": "bun scripts/assetTool.ts update",
+    "sync:colors": "bun scripts/syncColorsToPrompts.ts"
   },
   "keywords": [],
   "author": "",

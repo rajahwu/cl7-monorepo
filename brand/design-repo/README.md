@@ -33,3 +33,17 @@ This repository contains the governance, specifications, and assets for the Clea
 ## Governance
 
 All changes to colors or type must be committed to `tokens.json` first, then propagated to apps and packages.
+
+## Asset Generation Workflow
+
+1.  **Sync Colors:** Run `bun run sync:colors` to extract latest colors from SetDefinitions to `TOKENS_SOURCE/set_colors.json`.
+2.  **Update Prompts:** Edit `PROMPTS/enhanced_image_prompts_<set>.md`. Use placeholders `{{primary}}`, `{{accent}}`, etc. Define sections with `## icon_name`.
+3.  **Generate:** Run the generation script:
+    ```bash
+    export GOOGLE_API_KEY=...
+    bun scripts/generateAssetsFromPrompts.ts brand/design-repo/PROMPTS/enhanced_image_prompts_<set>.md brand/design-repo/ASSETS/<Set>/_staging
+    ```
+4.  **Save:** Save approved assets to the library:
+    ```bash
+    bun scripts/assetTool.ts save <Set> brand/design-repo/ASSETS/<Set>/_staging/icon_name.png
+    ```

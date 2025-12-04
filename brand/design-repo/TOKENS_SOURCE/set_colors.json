@@ -1,0 +1,88 @@
+{
+  "BlogPosts": {
+    "primary": "#1A1A1A",
+    "secondary": "#333333",
+    "accent": "#0066CC",
+    "bg": "#FFFFFF",
+    "text": "#2C2C2C",
+    "success": "#16A34A",
+    "muted": "#666666"
+  },
+  "Clearline7": {
+    "primary": "#3B82F6",
+    "secondary": "#60A5FA",
+    "accent": "#06B6D4",
+    "bg": "#FFFFFF",
+    "text": "#111827",
+    "success": "#10B981",
+    "muted": "#6B7280"
+  },
+  "FederalFlow": {
+    "primary": "#1B3A6B",
+    "secondary": "#2E5090",
+    "accent": "#4A7BA7",
+    "bg": "#FFFFFF",
+    "text": "#0A0E27",
+    "success": "#2D5016",
+    "muted": "#5A6B7D"
+  },
+  "ClerkRoomStandard": {
+    "primary": "#003366",
+    "secondary": "#004080",
+    "accent": "#6B7280",
+    "bg": "#FFFFFF",
+    "text": "#1F2937",
+    "success": "#059669",
+    "muted": "#9CA3AF"
+  },
+  "TechDocs": {
+    "primary": "#0F172A",
+    "secondary": "#1E293B",
+    "accent": "#06B6D4",
+    "bg": "#FFFFFF",
+    "text": "#0F172A",
+    "success": "#10B981",
+    "muted": "#64748B"
+  },
+  "ClericalOfficePro": {
+    "primary": "#2F5597",
+    "secondary": "#385D8A",
+    "accent": "#64748B",
+    "bg": "#FFFFFF",
+    "text": "#0F172A",
+    "success": "#16A34A",
+    "muted": "#64748B"
+  },
+  "WikiGuidelines": {
+    "primary": "#4F7328",
+    "secondary": "#5F9B2E",
+    "accent": "#84CC16",
+    "bg": "#FFFFFF",
+    "text": "#1B1F0B",
+    "success": "#22C55E",
+    "muted": "#6B7280"
+  },
+  "BoxKit": {
+    "primary": "#0F9D9A",
+    "accent": "#FF8A4B",
+    "bg": "#FFFFFF",
+    "text": "#0F172A",
+    "muted": "#6B7280"
+  },
+  "TechLaw": {
+    "primary": "#162447",
+    "accent": "#D97706",
+    "bg": "#FFFFFF",
+    "text": "#0B1220",
+    "muted": "#6B7280"
+  },
+  "ElementSeven": {
+    "primary": "#25304A",
+    "accent": "#00C2D1",
+    "bg": "#0F1724",
+    "text": "#E6EEF6",
+    "surface": "#111827",
+    "success": "#16A34A",
+    "muted": "#9AA6B2"
+  }
+}

@@ -8,8 +8,15 @@ const readmePath = path.join(assetsDir, 'README.md')
 const manifestPath = path.resolve(__dirname, '../brand/design-repo/ASSET_MANIFEST.md')
 
 // Utility: generate governed filename
-function generateFilename(set: string, type: 'icon' | 'emoji' | 'clipart', concept: string) {
-  return `${type}_${concept.toLowerCase()}_${set.toLowerCase()}.svg`
+function generateFilename(
+  set: string,
+  type: 'icon' | 'emoji' | 'clipart',
+  concept: string,
+  ext: string
+) {
+  // Ensure ext starts with dot
+  if (!ext.startsWith('.')) ext = '.' + ext
+  return `${type}_${concept.toLowerCase()}_${set.toLowerCase()}${ext}`
 }
 
 // Save asset with correct naming and update manifest
@@ -22,7 +29,8 @@ function saveAsset(
   const dir = path.join(assetsDir, set)
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
 
-  const filename = generateFilename(set, type, concept)
+  const ext = path.extname(filePath) || '.svg' // Default to svg if unknown? Or fail.
+  const filename = generateFilename(set, type, concept, ext)
   const filepath = path.join(dir, filename)
 
   console.log(`📄 Suggested filename: ${filename}`)
@@ -49,7 +57,8 @@ function updateManifest(set: string, filename: string) {
   }
 
   // Ensure entry is under the correct heading
-  const regex = new RegExp(`(${heading}[\\s\\S]*?)(?=\\n##|$)`)
+  // eslint-disable-next-line no-useless-escape
+  const regex = new RegExp(`(${heading}[\s\S]*?)(?=\n##|$)`)
   const match = manifest.match(regex)
 
   if (match) {
@@ -58,9 +67,9 @@ function updateManifest(set: string, filename: string) {
       const updatedSection = section.trimEnd() + `\n- ${relativePath}\n`
       manifest = manifest.replace(regex, updatedSection)
       fs.writeFileSync(manifestPath, manifest)
-      console.log(`📒 Manifest updated under ${set}: ${relativePath}`)
+      console.log(` 📒 Manifest updated under ${set}: ${relativePath}`)
     } else {
-      console.log(`ℹ️ Manifest already contains: ${relativePath}`)
+      console.log(` ℹ️ Manifest already contains: ${relativePath}`)
     }
   }
 }
@@ -101,7 +110,7 @@ function updateTracker() {
   let readme = fs.existsSync(readmePath) ? fs.readFileSync(readmePath, 'utf-8') : ''
   const marker = '## Progress Tracker'
   if (readme.includes(marker)) {
-    readme = readme.replace(/## Progress Tracker[\\s\\S]*?(?=##|$)/, `${marker}\n\n${table}\n`)
+    readme = readme.replace(/## Progress Tracker[\s\S]*?(?=##|$)/, `${marker}\n\n${table}\n`)
   } else {
     readme += `\n\n${marker}\n\n${table}\n`
   }
@@ -130,7 +139,7 @@ function reindexManifest() {
   })
 
   fs.writeFileSync(manifestPath, manifest)
-  console.log('📒 Manifest fully rebuilt and grouped by set!')
+  console.log(' 📒 Manifest fully rebuilt and grouped by set!')
 }
 
 // CLI entry
@@ -142,10 +151,28 @@ const isAssetType = (v: string): v is 'icon' | 'emoji' | 'clipart' =>
 switch (cmd) {
   case 'save': {
     // Usage: bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
+    // OR: bun scripts/assetTool.ts save <set> <filePath> (infers type/concept from filename)
+
+    if (args.length === 2) {
+      const [set, filePath] = args
+      const basename = path.basename(filePath) // icon_blogpost.png
+      const match = basename.match(/^([^_]+)_(.+)\.(png|svg|jpg)$/)
+      if (match) {
+        const type = match[1]
+        const concept = match[2]
+        if (isAssetType(type)) {
+          console.log(` ℹ️ Inferred type: ${type}, concept: ${concept}`)
+          saveAsset(set, type, concept, filePath)
+          break
+        }
+      }
+    }
+
     const [set, type, concept, filePath] = args
 
     if (!set || !type || !concept || !filePath) {
       console.error('Usage: assetTool save <set> <type> <concept> <filePath>')
+      console.error('   OR: assetTool save <set> <filePath>')
       process.exit(1)
     }
 
@@ -155,6 +182,13 @@ switch (cmd) {
     }
 
     saveAsset(set, type, concept, filePath)
+    break
+  }
+
+  case 'generate': {
+    console.log(
+      ' ℹ️ Prompt generation is now handled dynamically by scripts/generateAssetsFromPrompts.ts using placeholders.'
+    )
     break
   }
 
@@ -170,6 +204,8 @@ switch (cmd) {
   default:
     console.log(`Usage:
   bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
+  bun scripts/assetTool.ts save <set> <filePath>
+  bun scripts/assetTool.ts generate
   bun scripts/assetTool.ts update
   bun scripts/assetTool.ts reindex`)
 }
