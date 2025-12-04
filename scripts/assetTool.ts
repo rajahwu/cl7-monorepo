@@ -5,13 +5,14 @@ import path from 'path'
 
 const assetsDir = path.resolve(__dirname, '../brand/design-repo/ASSETS')
 const readmePath = path.join(assetsDir, 'README.md')
+const manifestPath = path.resolve(__dirname, '../brand/design-repo/ASSET_MANIFEST.md')
 
 // Utility: generate governed filename
 function generateFilename(set: string, type: 'icon' | 'emoji' | 'clipart', concept: string) {
   return `${type}_${concept.toLowerCase()}_${set.toLowerCase()}.svg`
 }
 
-// Save asset with correct naming
+// Save asset with correct naming and update manifest
 function saveAsset(
   set: string,
   type: 'icon' | 'emoji' | 'clipart',
@@ -30,6 +31,25 @@ function saveAsset(
   const content = fs.readFileSync(filePath)
   fs.writeFileSync(filepath, content)
   console.log(`✅ Asset saved successfully!`)
+
+  updateManifest(set, filename)
+}
+
+// Update ASSET_MANIFEST.md
+function updateManifest(set: string, filename: string) {
+  const relativePath = `ASSETS/${set}/${filename}`
+  let manifest = fs.existsSync(manifestPath)
+    ? fs.readFileSync(manifestPath, 'utf-8')
+    : '# Asset Manifest\n\n'
+
+  // Append entry if not already present
+  if (!manifest.includes(relativePath)) {
+    manifest += `- ${relativePath}\n`
+    fs.writeFileSync(manifestPath, manifest)
+    console.log(`📒 Manifest updated: ${relativePath}`)
+  } else {
+    console.log(`ℹ️ Manifest already contains: ${relativePath}`)
+  }
 }
 
 // Check status of a set
@@ -80,6 +100,9 @@ function updateTracker() {
 // CLI entry
 const [, , cmd, ...args] = process.argv
 
+const isAssetType = (v: string): v is 'icon' | 'emoji' | 'clipart' =>
+  v === 'icon' || v === 'emoji' || v === 'clipart'
+
 switch (cmd) {
   case 'save': {
     // Usage: bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
@@ -90,14 +113,12 @@ switch (cmd) {
       process.exit(1)
     }
 
-    if (!['icon', 'emoji', 'clipart'].includes(type)) {
+    if (!isAssetType(type)) {
       console.error('Type must be one of: icon | emoji | clipart')
       process.exit(1)
     }
 
-    const assetType = type as 'icon' | 'emoji' | 'clipart'
-
-    saveAsset(set, assetType, concept, filePath)
+    saveAsset(set, type, concept, filePath)
     break
   }
 
