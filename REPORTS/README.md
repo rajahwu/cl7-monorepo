@@ -8,17 +8,18 @@ Reports are named using the following convention:
 
 `<YYYY-MM-DD-HHMMSS>_<agent-name>_<report-type>.md`
 
--   **YYYY-MM-DD-HHMMSS:** The timestamp of when the report was generated.
--   **agent-name:** The name of the agent that generated the report.
--   **report-type:** The type of report.
+- **YYYY-MM-DD-HHMMSS:** The timestamp of when the report was generated.
+- **agent-name:** The name of the agent that generated the report.
+- **report-type:** The type of report.
 
 ## Report Types
 
 The following report types are currently defined:
 
--   **initial-evaluation:** An initial evaluation of the repository.
--   **git-commit-summary:** A summary of the changes in a git commit.
--   **code-quality-analysis:** An analysis of the code quality.
--   **performance-benchmark:** A report on the performance of the application.
+- **initial-evaluation:** An initial evaluation of the repository.
+- **git-commit-summary:** A summary of the changes in a git commit.
+- **code-quality-analysis:** An analysis of the code quality.
+- **performance-benchmark:** A report on the performance of the application.
+- **brand-integration-audit:** An audit of the brand integration strategy and implementation.
 
 **Note:** The report types are still under evaluation and may be subject to change.
