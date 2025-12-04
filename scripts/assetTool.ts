@@ -42,13 +42,26 @@ function updateManifest(set: string, filename: string) {
     ? fs.readFileSync(manifestPath, 'utf-8')
     : '# Asset Manifest\n\n'
 
-  // Append entry if not already present
-  if (!manifest.includes(relativePath)) {
-    manifest += `- ${relativePath}\n`
-    fs.writeFileSync(manifestPath, manifest)
-    console.log(`📒 Manifest updated: ${relativePath}`)
-  } else {
-    console.log(`ℹ️ Manifest already contains: ${relativePath}`)
+  const heading = `## ${set}`
+  if (!manifest.includes(heading)) {
+    // Add new heading if it doesn't exist
+    manifest += `\n${heading}\n`
+  }
+
+  // Ensure entry is under the correct heading
+  const regex = new RegExp(`(${heading}[\\s\\S]*?)(?=\\n##|$)`)
+  const match = manifest.match(regex)
+
+  if (match) {
+    const section = match[1]
+    if (!section.includes(relativePath)) {
+      const updatedSection = section.trimEnd() + `\n- ${relativePath}\n`
+      manifest = manifest.replace(regex, updatedSection)
+      fs.writeFileSync(manifestPath, manifest)
+      console.log(`📒 Manifest updated under ${set}: ${relativePath}`)
+    } else {
+      console.log(`ℹ️ Manifest already contains: ${relativePath}`)
+    }
   }
 }
 
@@ -97,6 +110,29 @@ function updateTracker() {
   console.log('✅ Asset status tracker updated!')
 }
 
+function reindexManifest() {
+  const sets = fs
+    .readdirSync(assetsDir)
+    .filter((f) => fs.statSync(path.join(assetsDir, f)).isDirectory())
+
+  let manifest = '# Asset Manifest\n\n'
+
+  sets.forEach((set) => {
+    manifest += `## ${set}\n`
+    const dir = path.join(assetsDir, set)
+    const files = fs.readdirSync(dir)
+
+    files.forEach((file) => {
+      manifest += `- ASSETS/${set}/${file}\n`
+    })
+
+    manifest += '\n'
+  })
+
+  fs.writeFileSync(manifestPath, manifest)
+  console.log('📒 Manifest fully rebuilt and grouped by set!')
+}
+
 // CLI entry
 const [, , cmd, ...args] = process.argv
 
@@ -127,8 +163,13 @@ switch (cmd) {
     break
   }
 
+  case 'reindex':
+    reindexManifest()
+    break
+
   default:
     console.log(`Usage:
   bun scripts/assetTool.ts save <set> <type> <concept> <filePath>
-  bun scripts/assetTool.ts update`)
+  bun scripts/assetTool.ts update
+  bun scripts/assetTool.ts reindex`)
 }
