@@ -1,59 +1,59 @@
 export interface ColorAttributes {
-  primary: string;
-  secondary: string;
-  accent: string;
-  success: string;
-  bg: string;
-  card: string;
-  text: string;
-  muted: string;
-  border: string;
+  primary: string
+  secondary: string
+  accent: string
+  success: string
+  bg: string
+  card: string
+  text: string
+  muted: string
+  border: string
+  surface: string
+  danger: string
+  focus: string
 }
 
 export interface TypographyAttributes {
-  bodyFont: string;
-  bodyFallback: string;
-  headingFont: string;
-  monoFont: string;
-  bodySize: string;
-  h1Size: string;
-  h2Size: string;
-  h3Size: string;
-  h4Size: string;
-  h5Size: string;
-  h6Size: string;
-  lineHeightNormal: number;
-  lineHeightTight: number;
+  bodyFont: string
+  bodyFallback: string
+  headingFont: string
+  monoFont: string
+  bodySize: string
+  h1Size: string
+  h2Size: string
+  h3Size: string
+  h4Size: string
+  h5Size: string
+  h6Size: string
+  lineHeightNormal: number
+  lineHeightTight: number
 }
 
 export interface SpacingAttributes {
-  bulletIndent: string;
-  paragraphBefore?: string;
-  paragraphAfter: string;
-  scale?: {
-    [key: string]: string;
-  };
+  bulletIndent: string
+  paragraphBefore?: string
+  paragraphAfter: string
+  scale: { [key: string]: string }
 }
 
 export interface RadiusAttributes {
-  button: string;
-  card: string;
-  input: string;
+  button: string
+  card: string
+  input: string
 }
 
 export interface ShadowAttributes {
-  low: string;
-  medium: string;
-  high: string;
+  low: string
+  medium: string
+  high: string
 }
 
-
 class SetDefinition {
-  colors: ColorAttributes;
-  typography: TypographyAttributes;
-  spacing: SpacingAttributes;
-  radius: RadiusAttributes;
-  shadows: ShadowAttributes;
+  colors: ColorAttributes
+  typography: TypographyAttributes
+  spacing: SpacingAttributes
+  radius: RadiusAttributes
+  shadows: ShadowAttributes
 
   constructor(
     colors: Partial<ColorAttributes> = {},
@@ -64,35 +64,38 @@ class SetDefinition {
   ) {
     // --- Default Colors ---
     this.colors = {
-      primary: "#000000",
-      secondary: "#555555",
-      accent: "#999999",
-      success: "#00AA00",
-      bg: "#FFFFFF",
-      card: "#F0F0F0",
-      text: "#111111",
-      muted: "#888888",
-      border: "#CCCCCC",
+      primary: '#000000',
+      secondary: '#555555',
+      accent: '#999999',
+      success: '#00AA00',
+      bg: '#FFFFFF',
+      card: '#F0F0F0',
+      text: '#111111',
+      muted: '#888888',
+      border: '#CCCCCC',
+      danger: '#FF0000',
+      focus: '#0000FF',
+      surface: '#FFFFFF',
       ...colors, // override with user-provided
-    };
+    }
 
     // --- Default Typography ---
     this.typography = {
-      bodyFont: "Arial",
-      bodyFallback: "sans-serif",
-      headingFont: "Arial",
-      monoFont: "Courier New",
-      bodySize: "12pt",
-      h1Size: "20pt",
-      h2Size: "16pt",
-      h3Size: "14pt",
-      h4Size: "12pt",
-      h5Size: "12pt",
-      h6Size: "12pt",
+      bodyFont: 'Arial',
+      bodyFallback: 'sans-serif',
+      headingFont: 'Arial',
+      monoFont: 'Courier New',
+      bodySize: '12pt',
+      h1Size: '20pt',
+      h2Size: '16pt',
+      h3Size: '14pt',
+      h4Size: '12pt',
+      h5Size: '12pt',
+      h6Size: '12pt',
       lineHeightNormal: 1.5,
       lineHeightTight: 1.3,
       ...typography,
-    };
+    }
 
     // --- Default Spacing ---
     const defaultScale = {
@@ -105,60 +108,62 @@ class SetDefinition {
       '8': '32px',
       '12': '48px',
       '16': '64px',
-    };
+      '20': '72px',
+    }
 
     this.spacing = {
-      bulletIndent: "0.25in",
-      paragraphBefore: "6pt",
-      paragraphAfter: "6pt",
+      bulletIndent: '0.25in',
+      paragraphBefore: '6pt',
+      paragraphAfter: '6pt',
       ...spacing,
       scale: {
         ...defaultScale,
         ...spacing.scale,
       },
-    };
+    }
 
     // --- Default Radius ---
     this.radius = {
-      button: "4px",
-      card: "4px",
-      input: "4px",
+      button: '4px',
+      card: '4px',
+      input: '4px',
       ...radius,
-    };
+    }
 
     // --- Default Shadows ---
     this.shadows = {
-      low: "0 1px 2px rgba(0,0,0,0.04)",
-      medium: "0 2px 4px rgba(0,0,0,0.06)",
-      high: "0 4px 8px rgba(0,0,0,0.08)",
+      low: '0 1px 2px rgba(0,0,0,0.04)',
+      medium: '0 2px 4px rgba(0,0,0,0.06)',
+      high: '0 4px 8px rgba(0,0,0,0.08)',
       ...shadows,
-    };
+    }
   }
 
   // --- toCSS(), toJSON(), getPrintStyles() stay the same ---
   toCSS(): string {
     const colorVars = Object.entries(this.colors)
       .map(([key, value]) => `--color-${key}: ${value};`)
-      .join("\n");
+      .join('\n')
     const fontVars = Object.entries(this.typography)
       .map(([key, value]) => `--font-${key}: ${value};`)
-      .join("\n");
+      .join('\n')
     const radiusVars = Object.entries(this.radius)
       .map(([key, value]) => `--radius-${key}: ${value};`)
-      .join("\n");
+      .join('\n')
     const shadowVars = Object.entries(this.shadows)
       .map(([key, value]) => `--shadow-${key}: ${value};`)
-      .join("\n");
+      .join('\n')
 
-    let spacingVars = `--bullet-indent: ${this.spacing.bulletIndent};\n--paragraph-after: ${this.spacing.paragraphAfter};\n`;
-    if (this.spacing.paragraphBefore) spacingVars += `--paragraph-before: ${this.spacing.paragraphBefore};\n`;
+    let spacingVars = `--bullet-indent: ${this.spacing.bulletIndent};\n--paragraph-after: ${this.spacing.paragraphAfter};\n`
+    if (this.spacing.paragraphBefore)
+      spacingVars += `--paragraph-before: ${this.spacing.paragraphBefore};\n`
     if (this.spacing.scale) {
       spacingVars += Object.entries(this.spacing.scale)
         .map(([key, value]) => `--scale-${key}: ${value};`)
-        .join("\n");
+        .join('\n')
     }
 
-    return `:root {\n${colorVars}\n${fontVars}\n${radiusVars}\n${shadowVars}\n${spacingVars}}\n`;
+    return `:root {\n${colorVars}\n${fontVars}\n${radiusVars}\n${shadowVars}\n${spacingVars}}\n`
   }
 
   toJSON(): string {
@@ -172,7 +177,7 @@ class SetDefinition {
       },
       null,
       2
-    );
+    )
   }
 
   getPrintStyles(): string {
@@ -211,8 +216,8 @@ class SetDefinition {
     border-radius: ${this.radius.input};
   }
 }
-    `;
+    `
   }
 }
 
-export default SetDefinition;
+export default SetDefinition

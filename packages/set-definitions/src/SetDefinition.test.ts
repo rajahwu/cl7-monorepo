@@ -147,6 +147,9 @@ describe('SetDefinition', () => {
         text: '#FFFFFF',
         muted: '#999999',
         border: '#CCCCCC',
+        surface: '#FFFFFF',
+        danger: '#FF0000',
+        focus: '#0000FF',
       }
 
       const set = new SetDefinition(customColors)
@@ -185,20 +188,12 @@ describe('SetDefinition', () => {
     })
 
     it('should handle optional paragraphBefore spacing', () => {
-      const setWithBefore = new SetDefinition(
-        {},
-        {},
-        { paragraphBefore: '8pt' }
-      )
+      const setWithBefore = new SetDefinition({}, {}, { paragraphBefore: '8pt' })
       const cssWithBefore = setWithBefore.toCSS()
 
       expect(cssWithBefore).toContain('--paragraph-before: 8pt;')
 
-      const setWithoutBefore = new SetDefinition(
-        {},
-        {},
-        { paragraphBefore: undefined }
-      )
+      const setWithoutBefore = new SetDefinition({}, {}, { paragraphBefore: undefined })
       const cssWithoutBefore = setWithoutBefore.toCSS()
 
       expect(cssWithoutBefore).not.toContain('--paragraph-before')
