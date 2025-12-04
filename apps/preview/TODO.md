@@ -19,17 +19,17 @@ The `apps/preview` app exists but has minimal content. Much of the component/spe
 
 ### Core Setup
 
-- [ ] Verify `apps/preview` builds and runs (`pnpm dev:preview`)
-- [ ] Review existing `src/` structure
-- [ ] Set up routing (if not present)
-- [ ] Create base layout with style set selector
+- [x] Verify `apps/preview` builds and runs (`pnpm dev:preview`)
+- [x] Review existing `src/` structure
+- [x] Set up routing (if not present)
+- [x] Create base layout with style set selector
 
 ### Style Set Switcher
 
-- [ ] Create `StyleSetSelector.tsx` dropdown/tabs
-- [ ] Wire up `SetDefinitionProvider` to switch sets dynamically
-- [ ] Persist selection in URL params or localStorage
-- [ ] Show current set name in header
+- [x] Create `StyleSetSelector.tsx` dropdown/tabs
+- [x] Wire up `SetDefinitionProvider` to switch sets dynamically
+- [x] Persist selection in URL params or localStorage
+- [x] Show current set name in header
 
 ---
 
@@ -37,28 +37,28 @@ The `apps/preview` app exists but has minimal content. Much of the component/spe
 
 ### Move Component Preview Pages
 
-- [ ] Migrate `BlockquotePage.tsx` → preview app
-- [ ] Migrate `HeadingPage.tsx` → preview app
-- [ ] Migrate `ParagraphPage.tsx` → preview app
-- [ ] Migrate `CodePage.tsx` → preview app
-- [ ] Migrate `ListPage.tsx` → preview app
-- [ ] Migrate `CardPage.tsx` → preview app
-- [ ] Migrate `ButtonPage.tsx` → preview app
-- [ ] Migrate `HeaderPage.tsx` → preview app
-- [ ] Migrate `FooterPage.tsx` → preview app
-- [ ] Migrate `NavigationPage.tsx` → preview app
+- [x] Migrate `BlockquotePage.tsx` → preview app
+- [x] Migrate `HeadingPage.tsx` → preview app
+- [x] Migrate `ParagraphPage.tsx` → preview app
+- [x] Migrate `CodePage.tsx` → preview app
+- [x] Migrate `ListPage.tsx` → preview app
+- [x] Migrate `CardPage.tsx` → preview app
+- [x] Migrate `ButtonPage.tsx` → preview app
+- [x] Migrate `HeaderPage.tsx` → preview app
+- [x] Migrate `FooterPage.tsx` → preview app
+- [x] Migrate `NavigationPage.tsx` → preview app
 
 ### Move Specimen Sheet
 
-- [ ] Migrate `SpecimenPage.tsx` → preview app
-- [ ] Enhance with style set switching
-- [ ] Add export/download functionality
+- [x] Migrate `SpecimenPage.tsx` → preview app
+- [x] Enhance with style set switching
+- [x] Add export/download functionality
 
 ### Update Style Guide
 
-- [ ] Remove migrated pages from style-guide
-- [ ] Update style-guide nav to link to preview app
-- [ ] Keep style-guide focused on documentation only
+- [x] Remove migrated pages from style-guide
+- [x] Update style-guide nav to link to preview app
+- [x] Keep style-guide focused on documentation only
 
 ---
 
