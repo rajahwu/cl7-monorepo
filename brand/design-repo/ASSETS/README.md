@@ -1,0 +1,28 @@
+# Clearline7 Asset Index
+
+This directory contains all generated and documented assets for Clearline7 brand-aesthetic sets.  
+Each subfolder corresponds to a set and includes a README with palette notes, usage rules, and asset lists.
+
+## Sets
+
+- [BlogPost](./BlogPost/README.md) — editorial and publishing assets
+- [BoxKit](./BoxKit/README.md) — modular, friendly UI assets
+- [Clearline7](./Clearline7/README.md) — core brand identity assets
+- [ClericalOfficePro](./ClericalOfficePro/README.md) — administrative and office assets
+- [ClerkRoomStandard](./ClerkRoomStandard/README.md) — governance and clerical assets
+- [ElementSeven](./ElementSeven/README.md) — compact, modern UI assets
+- [FederalFlow](./FederalFlow/README.md) — government and compliance assets
+- [TechDocs](./TechDocs/README.md) — technical documentation assets
+- [TechLaw](./TechLaw/README.md) — legal and compliance assets
+- [WikiGuides](./WikiGuides/README.md) — collaborative knowledge assets
+
+## Usage
+
+- Each set folder contains icons, emoji equivalents, and clip art.
+- Naming conventions are defined in [README_assets.md](../README_assets.md).
+- Prompts for generating assets are located in [../PROMPTS](../PROMPTS).
+
+## Governance
+
+All assets must be documented in [ASSET_MANIFEST.md](../ASSET_MANIFEST.md).  
+Updates to palettes or naming conventions must be reflected in `README_assets.md`.
