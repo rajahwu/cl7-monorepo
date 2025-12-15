@@ -3,7 +3,7 @@ dist/
 .turbo/
 .env
 *.log
-
+credentials.json
 # Ignore temporary and archive files
 apps/landing/UndateLandingPageCode.md
 archive/

@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@clearline7/set-definitions": "workspace:*",
+    "@clearline7/types": "workspace:*",
     "docx": "^9.5.1",
+    "gcloud": "^0.37.2",
     "googleapis": "^166.0.0"
   },
   "keywords": [],
