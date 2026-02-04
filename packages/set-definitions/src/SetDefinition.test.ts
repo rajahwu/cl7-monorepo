@@ -262,6 +262,35 @@ describe('SetDefinition', () => {
     })
   })
 
+  describe('toTailwindCSS()', () => {
+    it('should generate a valid @theme block', () => {
+      const set = new SetDefinition()
+      const tw = set.toTailwindCSS()
+
+      expect(tw).toContain('@theme {')
+      expect(tw).toContain('--color-primary: #000000;')
+      expect(tw).toContain('--font-body: Arial, sans-serif;')
+      expect(tw).toContain('--radius-button: 4px;')
+      expect(tw).toContain('--spacing-4: 16px;')
+      expect(tw).toContain('}')
+    })
+
+    it('should correctly format fonts', () => {
+      const set = new SetDefinition(
+        {},
+        {
+          bodyFont: 'Georgia',
+          bodyFallback: 'serif',
+          headingFont: 'Oswald',
+        }
+      )
+      const tw = set.toTailwindCSS()
+
+      expect(tw).toContain('--font-body: Georgia, serif;')
+      expect(tw).toContain('--font-heading: Oswald;')
+    })
+  })
+
   describe('toJSON()', () => {
     it('should serialize all attributes correctly', () => {
       const set = new SetDefinition()

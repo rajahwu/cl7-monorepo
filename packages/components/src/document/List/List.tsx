@@ -2,7 +2,7 @@ import { ReactNode, CSSProperties } from 'react'
 import { useTheme } from '@clearline7/theme'
 
 interface ListProps {
-  children: ReactNode
+  children?: ReactNode
   ordered?: boolean
   style?: CSSProperties
 }
@@ -24,7 +24,7 @@ export function List({ children, ordered = false, style }: ListProps) {
   return <Tag style={baseStyle}>{children}</Tag>
 }
 
-export function ListItem({ children, style }: { children: ReactNode; style?: CSSProperties }) {
+export function ListItem({ children, style }: { children?: ReactNode; style?: CSSProperties }) {
   const theme = useTheme()
 
   const baseStyle: CSSProperties = {

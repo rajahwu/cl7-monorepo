@@ -21,7 +21,7 @@ export function MarkdownPreview() {
         h3: ({node, ...props}) => <H3 {...props} />,
         p: ({node, ...props}) => <Paragraph {...props} />,
         blockquote: ({node, ...props}) => <Blockquote {...props} />,
-        code({inline, children, ...props}) {
+        code({inline, children, ...props}: any) {
           return <Code inline={inline} {...props}>{children}</Code>
         },
         ul: ({node, ...props}) => <List {...props} />,

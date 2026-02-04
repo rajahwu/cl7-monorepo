@@ -46,7 +46,6 @@ export function buildWordStyles(set: SetDefinition): IParagraphStyleOptions[] {
 
     // HEADINGS
     ...Object.entries(WORD_STYLE_NAMES.heading).map(([level, name]) => {
-      // @ts-expect-error - Dynamic key access
       const sizeKey = `h${level}Size` as keyof typeof typography
 
       return {

@@ -2,7 +2,7 @@ import { ReactNode, CSSProperties } from 'react'
 import { useTheme } from '@clearline7/theme'
 
 interface ParagraphProps {
-  children: ReactNode
+  children?: ReactNode
   style?: CSSProperties
 }
 

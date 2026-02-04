@@ -1,6 +1,5 @@
-// Clearline7DocsPortal.jsx
 import React, { useEffect, useState, useRef } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ThemeProvider } from "@clearline7/theme";
 import { Clearline7 } from "@clearline7/set-definitions";
@@ -8,9 +7,26 @@ import { Clearline7 } from "@clearline7/set-definitions";
 import {
   H1, H2, H3, Paragraph, Blockquote, Code,
   List, ListItem, Card, Button
-} from "@clearline7/components";
+} from "../index";
 
-const Collapsible = ({ title, children, level = 2, id }) => {
+interface MarkdownRendererProps {
+  url: string;
+}
+
+interface Subsection {
+  id: string;
+  title: string;
+  content: string[];
+}
+
+interface Section {
+  id: string;
+  title: string;
+  content: string[];
+  subsections: Subsection[];
+}
+
+const Collapsible = ({ title, children, level = 2, id }: { title: string, children: React.ReactNode, level?: number, id: string }) => {
   const [open, setOpen] = useState(true);
   const arrow = open ? "▼" : "▶";
   const Header = level === 2 ? H2 : H3;
@@ -48,25 +64,26 @@ const Collapsible = ({ title, children, level = 2, id }) => {
 };
 
 // Markdown spacing helpers
-const H1Spacer = ({ children }) => <H1 style={{ marginBottom: "24px" }}>{children}</H1>;
-const ParagraphSpacer = ({ children }) => <Paragraph style={{ marginBottom: "12px" }}>{children}</Paragraph>;
-const H3Spacer = ({ children }) => <H3 style={{ marginBottom: "12px" }}>{children}</H3>;
-const ListSpacer = ({ children, ordered }) => <List ordered={ordered} style={{ marginBottom: "12px" }}>{children}</List>;
-const ListItemSpacer = ({ children }) => <ListItem>{children}</ListItem>;
-const CodeBlock = ({ inline, children }) => <Code inline={inline} style={{ fontSize: inline ? "0.95em" : "1em" }}>{children}</Code>;
-const BlockquoteSpacer = ({ children }) => <Blockquote style={{ margin: "16px 0" }}>{children}</Blockquote>;
+const H1Spacer = ({ children }: { children?: React.ReactNode }) => <H1 style={{ marginBottom: "24px" }}>{children}</H1>;
+const ParagraphSpacer = ({ children }: { children?: React.ReactNode }) => <Paragraph style={{ marginBottom: "12px" }}>{children}</Paragraph>;
+const H3Spacer = ({ children }: { children?: React.ReactNode }) => <H3 style={{ marginBottom: "12px" }}>{children}</H3>;
+const ListSpacer = ({ children, ordered }: { children: React.ReactNode, ordered?: boolean }) => <List ordered={ordered} style={{ marginBottom: "12px" }}>{children}</List>;
+const ListItemSpacer = ({ children }: { children?: React.ReactNode }) => <ListItem>{children}</ListItem>;
+const CodeBlock = ({ inline, children }: { inline?: boolean, children: React.ReactNode }) => <Code inline={inline} style={{ fontSize: inline ? "0.95em" : "1em" }}>{children}</Code>;
+const BlockquoteSpacer = ({ children }: { children?: React.ReactNode }) => <Blockquote style={{ margin: "16px 0" }}>{children}</Blockquote>;
 
 // Parse markdown into hierarchical sections
-function parseSections(markdown) {
+function parseSections(markdown: string): Section[] {
   const lines = markdown.split("\n");
-  const sections = [];
-  let currentSection = null;
-  let subsection = null;
+  const sections: Section[] = [];
+  let currentSection: Section | null = null;
+  let subsection: Subsection | null = null;
 
   lines.forEach((line, idx) => {
     if (line.startsWith("## ")) {
       if (currentSection) sections.push(currentSection);
       currentSection = { id: `sec-${idx}`, title: line.replace("## ", "").trim(), content: [], subsections: [] };
+      subsection = null;
     } else if (line.startsWith("### ")) {
       if (subsection && currentSection) currentSection.subsections.push(subsection);
       subsection = { id: `sub-${idx}`, title: line.replace("### ", "").trim(), content: [] };
@@ -76,17 +93,17 @@ function parseSections(markdown) {
     }
   });
 
-  if (subsection && currentSection) currentSection.subsections.push(subsection);
+  if (subsection && currentSection) (currentSection as Section).subsections.push(subsection);
   if (currentSection) sections.push(currentSection);
 
   return sections;
 }
 
-export default function Clearline7DocsPortal({ url }) {
+export default function Clearline7DocsPortal({ url }: MarkdownRendererProps) {
   const [content, setContent] = useState("");
-  const [sections, setSections] = useState([]);
-  const [activeId, setActiveId] = useState(null);
-  const observerRef = useRef(null);
+  const [sections, setSections] = useState<Section[]>([]);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (!url) return;
@@ -101,7 +118,7 @@ export default function Clearline7DocsPortal({ url }) {
 
   // Scrollspy
   useEffect(() => {
-    const ids = [];
+    const ids: string[] = [];
     sections.forEach(sec => {
       ids.push(sec.id);
       sec.subsections.forEach(sub => ids.push(sub.id));
@@ -127,15 +144,15 @@ export default function Clearline7DocsPortal({ url }) {
     return () => observer.disconnect();
   }, [sections]);
 
-  const markdownComponents = {
+  const markdownComponents: any = {
     h1: H1Spacer,
     h2: H2,
     h3: H3Spacer,
     p: ParagraphSpacer,
     ul: ListSpacer,
-    ol: ({ children }) => <ListSpacer ordered>{children}</ListSpacer>,
+    ol: ({ children }: any) => <ListSpacer ordered>{children}</ListSpacer>,
     li: ListItemSpacer,
-    code: CodeBlock,
+    code: (props: any) => <CodeBlock {...props} />,
     blockquote: BlockquoteSpacer,
   };
 
@@ -143,12 +160,12 @@ export default function Clearline7DocsPortal({ url }) {
   const renderSections = () =>
     sections.map((sec, idx) => (
       <Collapsible key={sec.id} title={`${idx + 1}. ${sec.title}`} level={2} id={sec.id}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents as any}>
           {sec.content.join("\n")}
         </ReactMarkdown>
         {sec.subsections.map((sub, subIdx) => (
           <Collapsible key={sub.id} title={`${idx + 1}.${subIdx + 1} ${sub.title}`} level={3} id={sub.id}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents as any}>
               {sub.content.join("\n")}
             </ReactMarkdown>
           </Collapsible>

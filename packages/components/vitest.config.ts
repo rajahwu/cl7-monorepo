@@ -7,6 +7,7 @@ export default defineConfig({
       '@clearline7/theme': path.resolve(__dirname, '../theme/src'),
       '@clearline7/set-definitions': path.resolve(__dirname, '../set-definitions/src'),
     },
+    dedupe: ['react', 'react-dom'],
   },
   test: {
     globals: true,
