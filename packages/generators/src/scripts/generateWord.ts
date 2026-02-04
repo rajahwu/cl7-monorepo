@@ -9,7 +9,8 @@ import {
   WikiGuidelines,
   BlogPosts,
 } from '@clearline7/set-definitions'
-import { generateWord, ContentBlock } from '../generators/wordGenerator'
+import { generateWord } from '../generators/wordGenerator'
+import { ContentBlock } from '@clearline7/types'
 import * as fs from 'fs'
 import * as path from 'path'
 

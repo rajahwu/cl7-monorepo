@@ -35,8 +35,7 @@ export async function generateGDocs(
     // The logic doesn't change, just the Type Definition it validates against
     switch (block.type) {
       case 'heading':
-        // @ts-expect-error - Dynamic map access
-        appendText(block.text, GDOCS_STYLE_MAP.heading[block.level])
+        appendText(block.text, (GDOCS_STYLE_MAP.heading as any)[block.level])
         break
       case 'paragraph':
         appendText(block.text, GDOCS_STYLE_MAP.paragraph)
@@ -94,7 +93,19 @@ export async function generateGDocs(
   }
 
   return documentId
-}
 
-// Helper (Re-include if needed, or assume it's part of the file context you kept)
-// Since I'm showing the refactor, assume the helper 'appendText' is still inside the function scope or defined nearby.
+  function appendText(text: string, style: string) {
+    const len = text.length + 1
+    requests.push({
+      insertText: { text: text + '\n', endOfSegmentLocation: { segmentId: '' } },
+    })
+    requests.push({
+      updateParagraphStyle: {
+        range: { startIndex: index, endIndex: index + len },
+        paragraphStyle: { namedStyleType: style },
+        fields: 'namedStyleType',
+      },
+    })
+    index += len
+  }
+}

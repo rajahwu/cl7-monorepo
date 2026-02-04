@@ -44,10 +44,8 @@ export function buildGDocsStyleOverrides(set: SetDefinition) {
 
   // 2. OVERWRITE HEADINGS (1-6)
   for (let level = 1; level <= 6; level++) {
-    // @ts-expect-error - Dynamic key access
     const sizeKey = `h${level}Size` as keyof typeof typography
-    // @ts-expect-error - Dynamic map access
-    const styleName = GDOCS_STYLE_MAP.heading[level]
+    const styleName = (GDOCS_STYLE_MAP.heading as any)[level]
 
     requests.push({
       updateParagraphStyle: {

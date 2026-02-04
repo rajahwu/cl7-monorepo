@@ -1,8 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { generateWordMemo } from './wordGenerator.js'
+import { generateWord } from './wordGenerator.js'
 import { SetDefinition } from '@clearline7/set-definitions'
 import * as fs from 'fs'
 import * as path from 'path'
+
+async function generateWordMemo(setDef: SetDefinition, filePath: string) {
+  const buffer = await generateWord(setDef, { content: [] })
+  fs.writeFileSync(filePath, buffer)
+}
 
 describe('wordGenerator', () => {
   const testOutputDir = path.join(__dirname, '../../test-output')

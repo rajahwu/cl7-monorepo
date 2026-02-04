@@ -2,7 +2,8 @@
 
 import { google } from 'googleapis'
 import { Clearline7 } from '@clearline7/set-definitions'
-import { generateGDocs, ContentBlock } from '../generators/gdocsGenerator'
+import { generateGDocs } from '../generators/gdocsGenerator'
+import { ContentBlock } from '@clearline7/types'
 import * as path from 'path'
 
 // Standard Test Content
