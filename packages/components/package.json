@@ -14,7 +14,9 @@
   "dependencies": {
     "@clearline7/set-definitions": "workspace:*",
     "@clearline7/theme": "workspace:*",
-    "react": "^19.2.0"
+    "react": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "keywords": [],
   "author": "",

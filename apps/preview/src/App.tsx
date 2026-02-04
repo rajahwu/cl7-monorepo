@@ -6,9 +6,13 @@ import { StyleSetSelector } from './components/StyleSetSelector'
 // Pages
 import SpecimenPage from './pages/SpecimenPage'
 import { DocumentPreview } from './pages/DocumentPreview'
+import { MarkdownPreview } from './pages/MarkdownPreview'
 import { ColorSpecimen } from './pages/specimens/ColorSpecimen'
 import { TypographySpecimen } from './pages/specimens/TypographySpecimen'
 import { SpacingSpecimen } from './pages/specimens/SpacingSpecimen'
+import { UrlMarkdownPreview } from './pages/UrlMarkdownPreview'
+
+
 import BlockquotePage from './pages/components/BlockquotePage'
 import ButtonPage from './pages/components/ButtonPage'
 import CardPage from './pages/components/CardPage'
@@ -50,6 +54,12 @@ export default function App() {
             <ul style={{ listStyle: 'none', padding: 0 }}>
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={`/document?set=${currentSlug}`}>Document Preview</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/documenttest?set=${currentSlug}`}>MarkdownPreview</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={"/url-doc"}>UrlMarkdownPreview</Link>
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={`/specimen?set=${currentSlug}`}>Specimen Sheet</Link>
@@ -105,6 +115,9 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Navigate to={`/document?set=${currentSlug}`} replace />} />
               <Route path="/document" element={<DocumentPreview />} />
+              <Route path="/documenttest" element={<MarkdownPreview />} />
+              <Route path="/url-doc" element={<UrlMarkdownPreview />} />
+
               <Route path="/specimen" element={<SpecimenPage />} />
               <Route path="/specimens/typography" element={<TypographySpecimen />} />
               <Route path="/specimens/colors" element={<ColorSpecimen />} />

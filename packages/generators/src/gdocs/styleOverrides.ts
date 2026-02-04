@@ -1,6 +1,7 @@
 // packages/generators/src/gdocs/styleOverrides.ts
 
 import { SetDefinition } from '@clearline7/set-definitions'
+import { ContentBlock } from '@clearline7/types'
 import { GDOCS_STYLE_MAP } from './styleMap'
 
 // Helper: Convert px to PT (Google Docs uses Points)
@@ -28,8 +29,8 @@ export function buildGDocsStyleOverrides(set: SetDefinition) {
       style: {
         namedStyleType: GDOCS_STYLE_MAP.paragraph,
         paragraphStyle: {
-          spaceAbove: { magnitude: pxToPt(spacing.paragraphBefore), unit: 'PT' },
-          spaceBelow: { magnitude: pxToPt(spacing.paragraphAfter), unit: 'PT' },
+          spaceAbove: { magnitude: pxToPt(spacing.paragraphBefore ?? 0), unit: 'PT' },
+          spaceBelow: { magnitude: pxToPt(spacing.paragraphAfter ?? 0), unit: 'PT' },
         },
         textStyle: {
           fontFamily: typography.bodyFont,
