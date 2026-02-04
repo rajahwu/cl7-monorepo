@@ -2,7 +2,7 @@ import { ReactNode, CSSProperties } from 'react'
 import { useTheme } from '@clearline7/theme'
 
 interface CodeProps {
-  children?: ReactNode
+  children: ReactNode
   inline?: boolean
   style?: CSSProperties
 }
