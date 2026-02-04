@@ -1,1 +1,2 @@
-export { Heading, H1, H2, H3 } from './Heading'
+export * from './Heading'
+export { H1, H2, H3, Heading } from './Heading'
