@@ -1,6 +1,5 @@
-// Clearline7InteractiveArticle.jsx
 import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ThemeProvider } from "@clearline7/theme";
 import { Clearline7 } from "@clearline7/set-definitions";
@@ -8,10 +7,19 @@ import { Clearline7 } from "@clearline7/set-definitions";
 import {
   H1, H2, H3, Paragraph, Blockquote, Code,
   List, ListItem, Card, Button
-} from "@clearline7/components";
+} from "../index";
+
+interface MarkdownRendererProps {
+  url: string;
+}
+
+interface Section {
+  title: string;
+  id: string;
+}
 
 // H2 Section with collapsible content
-const CollapsibleSection = ({ title, children, id }) => {
+const CollapsibleSection = ({ title, children, id }: { title: string, children: React.ReactNode, id: string }) => {
   const [open, setOpen] = useState(true);
 
   return (
@@ -39,26 +47,26 @@ const CollapsibleSection = ({ title, children, id }) => {
 };
 
 // Spacing helpers
-const H1Spacer = ({ children }) => <H1 style={{ marginBottom: "24px" }}>{children}</H1>;
-const H3Spacer = ({ children }) => <H3 style={{ marginBottom: "12px" }}>{children}</H3>;
-const ParagraphSpacer = ({ children }) => (
+const H1Spacer = ({ children }: { children?: React.ReactNode }) => <H1 style={{ marginBottom: "24px" }}>{children}</H1>;
+const H3Spacer = ({ children }: { children?: React.ReactNode }) => <H3 style={{ marginBottom: "12px" }}>{children}</H3>;
+const ParagraphSpacer = ({ children }: { children?: React.ReactNode }) => (
   <Paragraph style={{ marginBottom: "12px" }}>{children}</Paragraph>
 );
-const ListSpacer = ({ children, ordered }) => (
+const ListSpacer = ({ children, ordered }: { children: React.ReactNode, ordered?: boolean }) => (
   <List ordered={ordered} style={{ marginBottom: "12px" }}>{children}</List>
 );
-const ListItemSpacer = ({ children }) => <ListItem>{children}</ListItem>;
-const CodeBlock = ({ inline, children }) => (
+const ListItemSpacer = ({ children }: { children?: React.ReactNode }) => <ListItem>{children}</ListItem>;
+const CodeBlock = ({ inline, children }: { inline?: boolean, children: React.ReactNode }) => (
   <Code inline={inline} style={{ fontSize: inline ? "0.95em" : "1em" }}>{children}</Code>
 );
-const BlockquoteSpacer = ({ children }) => (
+const BlockquoteSpacer = ({ children }: { children?: React.ReactNode }) => (
   <Blockquote style={{ margin: "16px 0" }}>{children}</Blockquote>
 );
 
 // Main renderer
-export default function Clearline7InteractiveArticle({ url }) {
+export default function Clearline7InteractiveArticle({ url }: MarkdownRendererProps) {
   const [content, setContent] = useState("");
-  const [sections, setSections] = useState([]);
+  const [sections, setSections] = useState<Section[]>([]);
 
   // Fetch markdown
   useEffect(() => {
@@ -76,7 +84,7 @@ export default function Clearline7InteractiveArticle({ url }) {
   useEffect(() => {
     if (!content) return;
     const lines = content.split("\n");
-    const h2s = [];
+    const h2s: Section[] = [];
     lines.forEach((line, idx) => {
       if (line.startsWith("## ")) {
         const title = line.replace("## ", "").trim();
@@ -87,11 +95,24 @@ export default function Clearline7InteractiveArticle({ url }) {
     setSections(h2s);
   }, [content]);
 
+  // Components mapping
+  const markdownComponents: any = {
+    h1: H1Spacer,
+    h2: ({ children }: any) => <H2>{children}</H2>, // will be wrapped in CollapsibleSection
+    h3: H3Spacer,
+    p: ParagraphSpacer,
+    ul: ListSpacer,
+    ol: ({ children }: any) => <ListSpacer ordered>{children}</ListSpacer>,
+    li: ListItemSpacer,
+    code: (props: any) => <CodeBlock {...props} />,
+    blockquote: BlockquoteSpacer,
+  };
+
   // Render markdown inside H2 collapsible sections
   const renderMarkdownWithSections = () => {
-    if (!sections.length) return <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{content}</ReactMarkdown>;
+    if (!sections.length) return <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents as any}>{content}</ReactMarkdown>;
 
-    const parts = [];
+    const parts: React.ReactNode[] = [];
     let lastIndex = 0;
 
     sections.forEach((sec, i) => {
@@ -103,7 +124,7 @@ export default function Clearline7InteractiveArticle({ url }) {
       const sectionContent = content.slice(nextIndex + (`## ${sec.title}`).length, nextNextIndex).trim();
       parts.push(
         <CollapsibleSection key={sec.id} title={sec.title} id={sec.id}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents as any}>
             {sectionContent}
           </ReactMarkdown>
         </CollapsibleSection>
@@ -113,29 +134,17 @@ export default function Clearline7InteractiveArticle({ url }) {
     });
 
     // Optional: include content before the first H2
-    const preContent = content.slice(0, content.indexOf(`## ${sections[0].title}`)).trim();
+    const firstH2Index = content.indexOf(`## ${sections[0].title}`);
+    const preContent = content.slice(0, firstH2Index).trim();
     if (preContent) {
       parts.unshift(
-        <ReactMarkdown key="preContent" remarkPlugins={[remarkGfm]} components={markdownComponents}>
+        <ReactMarkdown key="preContent" remarkPlugins={[remarkGfm]} components={markdownComponents as any}>
           {preContent}
         </ReactMarkdown>
       );
     }
 
     return parts;
-  };
-
-  // Components mapping
-  const markdownComponents = {
-    h1: H1Spacer,
-    h2: ({ children }) => <H2>{children}</H2>, // will be wrapped in CollapsibleSection
-    h3: H3Spacer,
-    p: ParagraphSpacer,
-    ul: ListSpacer,
-    ol: ({ children }) => <ListSpacer ordered>{children}</ListSpacer>,
-    li: ListItemSpacer,
-    code: CodeBlock,
-    blockquote: BlockquoteSpacer,
   };
 
   // Generate TOC

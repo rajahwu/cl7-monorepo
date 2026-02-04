@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { ThemeProvider } from "@clearline7/theme";
@@ -7,20 +7,37 @@ import { Clearline7 } from "@clearline7/set-definitions";
 import {
   H1, H2, H3, Paragraph, Blockquote, Code,
   List, ListItem, Card, Button
-} from "@clearline7/components";
+} from "../index";
+
+interface MarkdownRendererProps {
+  url: string;
+}
+
+interface SubSection {
+  id: string;
+  title: string;
+  content: string[];
+}
+
+interface Section {
+  id: string;
+  title: string;
+  content: string[];
+  subs: SubSection[];
+}
 
 
 // ---------- Helpers ----------
 
-const slugify = (str) =>
+const slugify = (str: string) =>
   str.toLowerCase().replace(/[^\w]+/g, "-");
 
-function parseSections(markdown) {
+function parseSections(markdown: string): Section[] {
   const lines = markdown.split("\n");
-  const sections = [];
+  const sections: Section[] = [];
 
-  let current = { id: "intro", title: "Introduction", content: [], subs: [] };
-  let sub = null;
+  let current: Section = { id: "intro", title: "Introduction", content: [], subs: [] };
+  let sub: SubSection | null = null;
 
   lines.forEach((line) => {
     if (line.startsWith("## ")) {
@@ -54,22 +71,22 @@ function parseSections(markdown) {
 
 // ---------- Markdown component mapping ----------
 
-const mdComponents = {
-  h1: ({ children }) => <H1 style={{ marginBottom: 24 }}>{children}</H1>,
-  h2: ({ children, ...props }) => <H2 {...props} style={{ marginTop: 12 }}>{children}</H2>,
-  h3: ({ children }) => <H3 style={{ marginTop: 8 }}>{children}</H3>,
-  p: ({ children }) => <Paragraph style={{ marginBottom: 12 }}>{children}</Paragraph>,
-  ul: ({ children }) => <List style={{ marginBottom: 12 }}>{children}</List>,
-  ol: ({ children }) => <List ordered style={{ marginBottom: 12 }}>{children}</List>,
-  li: ({ children }) => <ListItem>{children}</ListItem>,
-  blockquote: ({ children }) => <Blockquote style={{ margin: "16px 0" }}>{children}</Blockquote>,
-  code: ({ inline, children }) => <Code inline={inline}>{children}</Code>,
+const mdComponents: any = {
+  h1: ({ children }: any) => <H1 style={{ marginBottom: 24 }}>{children}</H1>,
+  h2: ({ children, ...props }: any) => <H2 {...props} style={{ marginTop: 12 }}>{children}</H2>,
+  h3: ({ children }: any) => <H3 style={{ marginTop: 8 }}>{children}</H3>,
+  p: ({ children }: any) => <Paragraph style={{ marginBottom: 12 }}>{children}</Paragraph>,
+  ul: ({ children }: any) => <List style={{ marginBottom: 12 }}>{children}</List>,
+  ol: ({ children }: any) => <List ordered style={{ marginBottom: 12 }}>{children}</List>,
+  li: ({ children }: any) => <ListItem>{children}</ListItem>,
+  blockquote: ({ children }: any) => <Blockquote style={{ margin: "16px 0" }}>{children}</Blockquote>,
+  code: ({ inline, children }: any) => <Code inline={inline}>{children}</Code>,
 };
 
 
 // ---------- Collapsible ----------
 
-const Collapsible = ({ title, id, level, children }) => {
+const Collapsible = ({ title, id, level, children }: { title: string, id: string, level: number, children: React.ReactNode }) => {
   const [open, setOpen] = useState(true);
   const Header = level === 2 ? H2 : H3;
 
@@ -99,15 +116,15 @@ const Collapsible = ({ title, id, level, children }) => {
 
 // ---------- Main Portal ----------
 
-export default function Clearline7DocsPortal({ url }) {
+export default function Clearline7PolishedDocsPortal({ url }: MarkdownRendererProps) {
   const [markdown, setMarkdown] = useState("");
-  const [sections, setSections] = useState([]);
+  const [sections, setSections] = useState<Section[]>([]);
   const [active, setActive] = useState("");
   const [search, setSearch] = useState("");
   const [dark, setDark] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const observer = useRef(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     fetch(url)
@@ -136,10 +153,10 @@ export default function Clearline7DocsPortal({ url }) {
 
     ids.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) observer.current.observe(el);
+      if (el && observer.current) observer.current.observe(el);
     });
 
-    return () => observer.current.disconnect();
+    return () => observer.current?.disconnect();
   }, [sections]);
 
   const filtered = useMemo(() => {
@@ -161,7 +178,7 @@ export default function Clearline7DocsPortal({ url }) {
         muted: "#9ca3af",
         border: "#374151",
       },
-    };
+    } as typeof Clearline7;
   }, [dark]);
 
   return (
@@ -242,7 +259,7 @@ export default function Clearline7DocsPortal({ url }) {
               level={2}
               title={`${i + 1}. ${s.title}`}
             >
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents as any}>
                 {s.content.join("\n")}
               </ReactMarkdown>
 
@@ -253,7 +270,7 @@ export default function Clearline7DocsPortal({ url }) {
                   level={3}
                   title={`${i + 1}.${j + 1} ${x.title}`}
                 >
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents as any}>
                     {x.content.join("\n")}
                   </ReactMarkdown>
                 </Collapsible>

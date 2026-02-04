@@ -4,11 +4,12 @@ import { useTheme } from '@clearline7/theme'
 
 interface HeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6
-  children: ReactNode
+  children?: ReactNode
   style?: CSSProperties
+  id?: string
 }
 
-export function Heading({ level, children, style }: HeadingProps) {
+export function Heading({ level, children, style, id }: HeadingProps) {
   const theme = useTheme()
   const Tag = `h${level}` as keyof React.JSX.IntrinsicElements
 
@@ -20,7 +21,7 @@ export function Heading({ level, children, style }: HeadingProps) {
     ...style,
   }
 
-  return <Tag style={baseStyle}>{children}</Tag>
+  return <Tag style={baseStyle} id={id}>{children}</Tag>
 }
 
 export const H1 = (props: Omit<HeadingProps, 'level'>) => <Heading level={1} {...props} />

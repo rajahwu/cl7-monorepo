@@ -11,6 +11,15 @@ import { ColorSpecimen } from './pages/specimens/ColorSpecimen'
 import { TypographySpecimen } from './pages/specimens/TypographySpecimen'
 import { SpacingSpecimen } from './pages/specimens/SpacingSpecimen'
 import { UrlMarkdownPreview } from './pages/UrlMarkdownPreview'
+import {
+  Clearline7AnimatedArticle,
+  Clearline7ArticleRenderer,
+  Clearline7DocsPortal,
+  Clearline7EnhancedRenderer,
+  Clearline7InteractiveArticle,
+  Clearline7PolishedDocsPortal,
+  Clearline7Renderer,
+} from '@clearline7/components'
 
 
 import BlockquotePage from './pages/components/BlockquotePage'
@@ -60,6 +69,27 @@ export default function App() {
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={"/url-doc"}>UrlMarkdownPreview</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/renderer?set=${currentSlug}`}>Markdown Renderer</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/enhanced?set=${currentSlug}`}>Enhanced Renderer</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/article?set=${currentSlug}`}>Article Renderer</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/interactive?set=${currentSlug}`}>Interactive Article</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/animated?set=${currentSlug}`}>Animated Article</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/portal?set=${currentSlug}`}>Docs Portal</Link>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <Link to={`/markdown/polished-portal?set=${currentSlug}`}>Polished Portal</Link>
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
                 <Link to={`/specimen?set=${currentSlug}`}>Specimen Sheet</Link>
@@ -117,6 +147,14 @@ export default function App() {
               <Route path="/document" element={<DocumentPreview />} />
               <Route path="/documenttest" element={<MarkdownPreview />} />
               <Route path="/url-doc" element={<UrlMarkdownPreview />} />
+
+              <Route path="/markdown/renderer" element={<Clearline7Renderer url="/sample.md" />} />
+              <Route path="/markdown/enhanced" element={<Clearline7EnhancedRenderer url="/sample.md" />} />
+              <Route path="/markdown/article" element={<Clearline7ArticleRenderer url="/sample.md" />} />
+              <Route path="/markdown/interactive" element={<Clearline7InteractiveArticle url="/sample.md" />} />
+              <Route path="/markdown/animated" element={<Clearline7AnimatedArticle url="/sample.md" />} />
+              <Route path="/markdown/portal" element={<Clearline7DocsPortal url="/sample.md" />} />
+              <Route path="/markdown/polished-portal" element={<Clearline7PolishedDocsPortal url="/sample.md" />} />
 
               <Route path="/specimen" element={<SpecimenPage />} />
               <Route path="/specimens/typography" element={<TypographySpecimen />} />
