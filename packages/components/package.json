@@ -21,7 +21,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@clearline7/set-definitions": "workspace:*",
+    "@clearline7/set-definitions": "^0.0.4",
     "@clearline7/theme": "workspace:*",
     "react": "^19.2.0",
     "react-markdown": "^10.1.0",
