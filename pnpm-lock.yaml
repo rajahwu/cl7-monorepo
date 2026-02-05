@@ -391,8 +391,8 @@ importers:
   packages/theme:
     dependencies:
       '@clearline7/set-definitions':
-        specifier: workspace:*
-        version: link:../set-definitions
+        specifier: ^0.0.2
+        version: 0.0.2
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -509,6 +509,9 @@ packages:
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
+
+  '@clearline7/set-definitions@0.0.2':
+    resolution: {integrity: sha512-zKm3+q1ayVtUhABQ37XC/sDCYroFFJJFy9TLG1zheVR4OMuXY40h8ouZIgJrQ+G7iCNMSxk/tMPSfDgqv3hP0w==}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -5473,6 +5476,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.28.5
 
   '@bcoe/v8-coverage@1.0.2': {}
+
+  '@clearline7/set-definitions@0.0.2': {}
 
   '@emnapi/core@1.8.1':
     dependencies:

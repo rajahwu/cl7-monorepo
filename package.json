@@ -1,7 +1,7 @@
 {
   "name": "clearline7-monorepo",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
